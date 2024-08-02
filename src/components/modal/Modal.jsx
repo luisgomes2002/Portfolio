@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./ModalStyle.css";
+import { useTranslation } from "react-i18next";
 
 function Modal({ project, onClose }) {
+  const { t } = useTranslation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const showAllImages = () => {
@@ -45,7 +47,7 @@ function Modal({ project, onClose }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Repositório
+                {t("RepositorioBtn")}
               </a>
             ))}
           </div>

@@ -3,9 +3,9 @@ nav {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   height: 10%;
-
+  padding: 0 10%;
   a {
     color: #999696;
     text-decoration: none;
@@ -21,8 +21,12 @@ nav {
     color: #fff;
     display: flex;
 
-    p {
+    button {
+      background-color: transparent;
+      color: white;
+      border: none;
       margin-right: 5px;
+      font-size: 16px;
       cursor: pointer;
     }
   }

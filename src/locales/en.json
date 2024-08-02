@@ -1,0 +1,19 @@
+{
+  "navInfo1": "ABOUT ME",
+  "navInfo2": "PROJECTS",
+  "navInfo3": "SKILLS",
+  "introduction": "HELLO, I AM LUIS!",
+  "about": "I AM 22 YEARS OLD, A COMPUTER ENGINEERING STUDENT WITH 1 YEAR OF EXPERIENCE WORKING AS A FREELANCER AND ON PERSONAL PROJECTS.",
+  "project": "My Projects",
+  "description1": "A site dedicated to people who want to learn Japanese, explore Japanese culture, and share their study experiences.",
+  "status1": "In development",
+  "description2": "Ecommerce Site",
+  "status2": "In development",
+  "description3": "Freelancer Landing Page for a Solar Energy company.",
+  "status3": "In development",
+  "description4": "Game Engine",
+  "status4": "In development",
+  "knowledge": "My Skills",
+  "footerInfo": "© Copyright 2024 Automatize. All rights reserved.",
+  "RepositorioBtn": "Repository"
+}

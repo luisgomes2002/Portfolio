@@ -1,0 +1,19 @@
+{
+  "navInfo1": "私について",
+  "navInfo2": "プロジェクト",
+  "navInfo3": "スキル",
+  "introduction": "こんにちは、ルイスです！",
+  "about": "私は22歳で、1年間フリーランサーとして、または個人プロジェクトに取り組んできたコンピュータ工学の学生です。",
+  "project": "私のプロジェクト",
+  "description1": "日本語を学びたい人、日本文化を探求したい人、そして学習経験を共有したい人のためのサイト。",
+  "status1": "開発中",
+  "description2": "Eコマースサイト",
+  "status2": "開発中",
+  "description3": "ソーラーエネルギー会社のためのフリーランサーランディングページ。",
+  "status3": "開発中",
+  "description4": "ゲームエンジン",
+  "status4": "開発中",
+  "knowledge": "私のスキル",
+  "footerInfo": "© 著作権 2024 Automatize. 無断転載を禁じます。",
+  "RepositorioBtn": "リポジトリ"
+}

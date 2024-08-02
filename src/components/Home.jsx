@@ -1,53 +1,55 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./HomeStyle.css";
 import MurasakiImg1 from "../assets/MurasakiImg1.png";
 import TrifaseImg1 from "../assets/TrifaseImg1.png";
 import Modal from "./modal/Modal";
+import BlackImg from "../assets/BlackImg.jpg";
 
 function Home() {
+  const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projectsPt = [
+  const projectsLng = [
     {
       id: 1,
       name: "Murasaki",
       images: [MurasakiImg1],
-      description:
-        "Site dedicado a pessoas que querem aprender japonês, explorar a cultura japonesa e compartilhar suas experiências de estudo",
+      description: t("description1"),
       stack: "JavaScript / ReacJs / Styled Component / NodeJs / MongoDb",
       links: ["https://github.com/luisgomes2002/JapaneseSite"],
-      status: "Em desenvolvimento",
-    },
-    {
-      id: 2,
-      name: "Ecommerce",
-      images: [],
-      description: "Site para Ecommerce",
-      stack: "TypeScript / Angular / C# / .Net / MySql",
-      links: [
-        "https://github.com/luisgomes2002/Ecommerce-Client",
-        "https://github.com/luisgomes2002/Ecommerce-Server",
-      ],
-      status: "Em desenvolvimento",
+      status: t("status1"),
     },
     {
       id: 3,
       name: "Trifase",
       images: [TrifaseImg1],
-      description: "Freelancer Landing Page para uma empresa de Energia Solar.",
+      description: t("description3"),
       stack: "Html / Css / JavaScript",
       links: ["https://github.com/luisgomes2002/Trifase"],
-      status: "Em desenvolvimento",
+      status: t("status3"),
+    },
+    {
+      id: 2,
+      name: "Ecommerce",
+      images: [BlackImg],
+      description: t("description2"),
+      stack: "TypeScript / Angular / C# / .Net / MySql",
+      links: [
+        "https://github.com/luisgomes2002/Ecommerce-Client",
+        "https://github.com/luisgomes2002/Ecommerce-Server",
+      ],
+      status: t("status2"),
     },
     {
       id: 4,
       name: "Hiro",
-      images: [],
-      description: "Game Engine",
+      images: [BlackImg],
+      description: t("description4"),
       stack: "C++ / OpenGl",
       links: ["https://github.com/luisgomes2002/Hiro"],
-      status: "Em desenvolvimento",
+      status: t("status4"),
     },
   ];
 
@@ -58,8 +60,8 @@ function Home() {
 
   return (
     <div className="home">
-      <div className="about">
-        <h2>OLÁ, EU SOU LUIS!</h2>
+      <div id="about" className="about">
+        <h2>{t("introduction")}</h2>
         <h1>
           BACKEND DEVELOPER
           <a href="https://github.com/luisgomes2002">
@@ -72,16 +74,13 @@ function Home() {
             <i className="fa-solid fa-file"></i>
           </a>
         </h1>
-        <p>
-          TENHO 22 ANOS SOU ESTUDANTE DE ENGENHARIA DA COMPUTAÇÃO COM 1 ANO DE
-          EXPERIÊNCIA TRABALHANDO COM FREELANCER E PROJETOS PRÓPRIOS.
-        </p>
+        <p>{t("about")}</p>
       </div>
 
-      <div className="projects">
-        <h1>Meus Projetos</h1>
+      <div id="projects" className="projects">
+        <h1>{t("project")}</h1>
         <div className="card">
-          {projectsPt.map((project) => (
+          {projectsLng.map((project) => (
             <button
               onClick={() => handleOpenModal(project)}
               className="projectsInfo"
@@ -103,8 +102,8 @@ function Home() {
         <Modal project={selectedProject} onClose={() => setOpenModal(false)} />
       )}
 
-      <div className="knowledge">
-        <h1>Meus Conhecimentos</h1>
+      <div id="knowledge" className="knowledge">
+        <h1>{t("knowledge")}</h1>
         <section>
           <i className="devicon-javascript-plain"></i>
           <i className="devicon-typescript-plain"></i>
@@ -117,7 +116,6 @@ function Home() {
           <i className="devicon-cplusplus-plain"></i>
         </section>
       </div>
-      <div className="contact"></div>
     </div>
   );
 }

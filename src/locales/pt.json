@@ -1,0 +1,19 @@
+{
+  "navInfo1": "SOBRE MIM",
+  "navInfo2": "PROJETOS",
+  "navInfo3": "CONHECIMENTOS",
+  "introduction": "OLÁ, EU SOU LUIS!",
+  "about": "TENHO 22 ANOS SOU ESTUDANTE DE ENGENHARIA DA COMPUTAÇÃO COM 1 ANO DE EXPERIÊNCIA TRABALHANDO COM FREELANCER E PROJETOS PRÓPRIOS.",
+  "project": "Meus Projetos",
+  "description1": "Site dedicado a pessoas que querem aprender japonês, explorar a cultura japonesa e compartilhar suas experiências de estudo",
+  "status1": "Em desenvolvimento",
+  "description2": "Site para Ecommerce",
+  "status2": "Em desenvolvimento",
+  "description3": "Freelancer Landing Page para uma empresa de Energia Solar.",
+  "status3": "Em desenvolvimento",
+  "description4": "Game Engine",
+  "status4": "Em desenvolvimento",
+  "knowledge": "Meus Conhecimentos",
+  "footerInfo": "© Copyright 2024 Automatize. Todos os direitos reservados.",
+  "RepositorioBtn": "Repositório"
+}

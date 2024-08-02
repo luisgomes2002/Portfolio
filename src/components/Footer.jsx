@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import "./FooterStyle.css";
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <div className="footerArea">
-      <p> © Copyright 2024 Automatize. Todos os direitos reservados.</p>
+      <p>{t("footerInfo")}</p>
     </div>
   );
 }

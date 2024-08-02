@@ -33,15 +33,8 @@
   width: 1100px;
   height: 500px;
 
-  img {
-    margin: 8% 5%;
-    width: 90%;
-    height: 75%;
-    border-radius: 5px;
-  }
-
   section {
-    padding: 23% 0;
+    padding: 23% 5% 0 0;
 
     h1 {
       margin: 5% 0;
@@ -75,10 +68,33 @@
 }
 
 .porjectImgs {
+  position: relative;
+  img {
+    margin: 8% 5%;
+    width: 90%;
+    height: 75%;
+    border-radius: 5px;
+  }
+
   button {
     position: absolute;
-    background-color: #6f00ff;
+    background-color: rgba(0, 0, 0, 0.315);
+    color: #fff;
     border: none;
     font-size: 20px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+  }
+
+  button:first-of-type {
+    left: 0;
+    margin-left: 38px;
+  }
+
+  button:last-of-type {
+    right: 0;
+    margin-right: 39px;
   }
 }
