@@ -1,0 +1,29 @@
+nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  height: 10%;
+
+  a {
+    color: #999696;
+    text-decoration: none;
+    margin: 0 5%;
+    font-size: 20px;
+  }
+
+  a:hover {
+    color: #6f00ff;
+  }
+
+  section {
+    color: #fff;
+    display: flex;
+
+    p {
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+}
