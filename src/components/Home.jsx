@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./HomeStyle.css";
 import MurasakiImg1 from "../assets/MurasakiImg1.png";
+import MurasakiImg2 from "../assets/MurasakiImg2.png";
+import MurasakiImg3 from "../assets/MurasakiImg3.png";
 import TrifaseImg1 from "../assets/TrifaseImg1.png";
 import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
@@ -15,7 +17,7 @@ function Home() {
     {
       id: 1,
       name: "Murasaki",
-      images: [MurasakiImg1],
+      images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
       description: t("description1"),
       stack: "JavaScript / ReacJs / Styled Component / NodeJs / MongoDb",
       links: ["https://github.com/luisgomes2002/JapaneseSite"],
@@ -63,7 +65,7 @@ function Home() {
       <div id="about" className="about">
         <h2>{t("introduction")}</h2>
         <h1>
-          BACKEND DEVELOPER
+          FULLSTACK DEVELOPER
           <a href="https://github.com/luisgomes2002">
             <i className="fa-brands fa-github"></i>
           </a>
@@ -109,11 +111,13 @@ function Home() {
           <i className="devicon-typescript-plain"></i>
           <i className="devicon-react-original"></i>
           <i className="devicon-angularjs-plain"></i>
+          <i className="devicon-nodejs-plain-wordmark"></i>
           <i className="devicon-csharp-plain"></i>
           <i className="devicon-dotnetcore-plain"></i>
           <i className="devicon-mysql-original"></i>
           <i className="devicon-mongodb-plain"></i>
           <i className="devicon-cplusplus-plain"></i>
+          <i className="devicon-git-plain"></i>
         </section>
       </div>
     </div>
