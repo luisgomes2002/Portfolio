@@ -1,8 +1,8 @@
 import "./ModalStyle.css";
 import { useTranslation } from "react-i18next";
-import ResumePT from "../../resumes/ResumeUS.pdf";
+import ResumePT from "../../resumes/ResumePT.pdf";
 import ResumeUS from "../../resumes/ResumeUS.pdf";
-import ResumeJP from "../../resumes/ResumeUS.pdf";
+import ResumeJP from "../../resumes/ResumeJP.pdf";
 
 const ModalResume = ({ onClose }) => {
   const { t } = useTranslation();
