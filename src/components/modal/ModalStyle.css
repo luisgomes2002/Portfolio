@@ -18,8 +18,8 @@
     font-size: 30px;
     color: #fff;
     position: fixed;
-    top: 23%;
-    right: 22%;
+    top: 0%;
+    right: 1%;
     cursor: pointer;
   }
 }
@@ -68,6 +68,7 @@
 
 .porjectImgs {
   position: relative;
+
   img {
     margin: 8% 5%;
     width: 90%;
@@ -96,5 +97,109 @@
   button:last-of-type {
     right: 0;
     margin-right: 39px;
+  }
+}
+
+.resumesArea {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #202024;
+  width: 50%;
+  height: 40%;
+  border-radius: 15px;
+
+  h1 {
+    font-size: 50px;
+    color: #fff;
+  }
+
+  div {
+    padding: 10%;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    width: 100%;
+
+    h2 {
+      color: #fff;
+    }
+
+    i {
+      color: #6f00ff;
+      font-size: 40px;
+      margin-top: 20%;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .modalContent {
+    width: 90%;
+    height: 90%;
+    grid-template-columns: 1fr;
+
+    section {
+      padding: 0 5% 5% 5%;
+    }
+
+    section h1 {
+      margin: 0 0 5% 0;
+    }
+  }
+
+  .resumesArea {
+    width: 90%;
+    height: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .modalContent {
+    width: 90%;
+    height: 65%;
+    grid-template-columns: 1fr;
+
+    section {
+      padding: 0 5% 5% 5%;
+    }
+
+    section h1 {
+      margin: 0 0 5% 0;
+    }
+  }
+
+  .resumesArea {
+    width: 90%;
+    height: 40%;
+
+    h2 {
+      font-size: 17px;
+    }
+  }
+
+  .porjectImgs {
+    img {
+      min-height: 230px;
+    }
+
+    button:first-of-type {
+      margin-left: 20px;
+    }
+
+    button:last-of-type {
+      margin-right: 21px;
+    }
+  }
+
+  .porjectImgs button {
+    font-size: 16px;
+    padding: 5px;
   }
 }

@@ -36,6 +36,13 @@
     font-size: 15px;
     color: #fff;
   }
+
+  button {
+    margin: 0 3%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }
 
 .projects {
@@ -120,5 +127,135 @@
       padding: 15% 50px;
       color: #6f00ff;
     }
+  }
+}
+
+@media (max-width: 1470px) {
+  .projectsInfo {
+    height: 520px;
+
+    img {
+      height: 280px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    h2 {
+      font-size: 15px;
+    }
+
+    h3 {
+      color: #6f00ff;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .projectsInfo {
+    img {
+      height: 240px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .projects {
+    margin: 0 23%;
+  }
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .about {
+    margin: 10% 10% 10% 10%;
+
+    h1 {
+      font-size: 100px;
+      margin-left: 0px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .projects {
+    margin: 0 18%;
+  }
+
+  .knowledge {
+    section {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .about {
+    margin: 70% 10% 10% 10%;
+
+    h1 {
+      font-size: 55px;
+      margin-left: 0px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .projects {
+    margin: 0 10%;
+
+    h1 {
+      font-size: 40px;
+    }
+  }
+
+  .card {
+    padding: 0;
+  }
+
+  .projectsInfo {
+    height: 500px;
+
+    img {
+      height: 240px;
+    }
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 2%;
+    }
+
+    h2 {
+      font-size: 15px;
+    }
+  }
+
+  .knowledge {
+    margin: 0;
+
+    h1 {
+      font-size: 35px;
+    }
+
+    section {
+      grid-template-columns: 1fr 1fr;
+
+      i {
+        font-size: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .projects {
+    margin: 0;
   }
 }

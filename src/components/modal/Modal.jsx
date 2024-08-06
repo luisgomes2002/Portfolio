@@ -53,7 +53,6 @@ function Modal({ project, onClose }) {
           </div>
         </section>
         <div className="closeButton">
-          {" "}
           <button onClick={onClose}>
             <i className="fa-solid fa-xmark"></i>
           </button>

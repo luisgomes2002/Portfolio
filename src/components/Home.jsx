@@ -7,10 +7,12 @@ import MurasakiImg3 from "../assets/MurasakiImg3.png";
 import TrifaseImg1 from "../assets/TrifaseImg1.png";
 import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
+import ModalResume from "./modal/ModalResume";
 
 function Home() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
+  const [openModalResume, setOpenModalResume] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projectsLng = [
@@ -55,9 +57,13 @@ function Home() {
     },
   ];
 
-  const handleOpenModal = (project) => {
+  const HandleOpenProject = (project) => {
     setSelectedProject(project);
     setOpenModal(true);
+  };
+
+  const HandleOpenResume = () => {
+    setOpenModalResume(true);
   };
 
   return (
@@ -72,9 +78,9 @@ function Home() {
           <a href="https://www.linkedin.com/in/luis-gomes-8462b321a/">
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a href="">
+          <button onClick={() => HandleOpenResume()}>
             <i className="fa-solid fa-file"></i>
-          </a>
+          </button>
         </h1>
         <p>{t("about")}</p>
       </div>
@@ -84,7 +90,7 @@ function Home() {
         <div className="card">
           {projectsLng.map((project) => (
             <button
-              onClick={() => handleOpenModal(project)}
+              onClick={() => HandleOpenProject(project)}
               className="projectsInfo"
               key={project.id}
             >
@@ -102,6 +108,10 @@ function Home() {
 
       {openModal && (
         <Modal project={selectedProject} onClose={() => setOpenModal(false)} />
+      )}
+
+      {openModalResume && (
+        <ModalResume onClose={() => setOpenModalResume(false)} />
       )}
 
       <div id="knowledge" className="knowledge">
