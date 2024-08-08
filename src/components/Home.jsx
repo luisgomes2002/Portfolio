@@ -55,6 +55,15 @@ function Home() {
       links: ["https://github.com/luisgomes2002/Hiro"],
       status: t("status4"),
     },
+    {
+      id: 5,
+      name: "RPG Game",
+      images: [BlackImg],
+      description: t("description5"),
+      stack: "C# / Unity",
+      links: "https://github.com/luisgomes2002/RPG",
+      status: t("status5"),
+    },
   ];
 
   const HandleOpenProject = (project) => {
