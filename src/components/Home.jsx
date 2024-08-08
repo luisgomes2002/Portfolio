@@ -61,7 +61,7 @@ function Home() {
       images: [BlackImg],
       description: t("description5"),
       stack: "C# / Unity",
-      links: "https://github.com/luisgomes2002/RPG",
+      links: ["https://github.com/luisgomes2002/RPG"],
       status: t("status5"),
     },
   ];
