@@ -34,36 +34,6 @@ function Home() {
       links: ["https://github.com/luisgomes2002/Trifase"],
       status: t("status3"),
     },
-    {
-      id: 2,
-      name: "Ecommerce",
-      images: [BlackImg],
-      description: t("description2"),
-      stack: "TypeScript / Angular / C# / .Net / MySql",
-      links: [
-        "https://github.com/luisgomes2002/Ecommerce-Client",
-        "https://github.com/luisgomes2002/Ecommerce-Server",
-      ],
-      status: t("status2"),
-    },
-    // {
-    //   id: 4,
-    //   name: "Hiro",
-    //   images: [BlackImg],
-    //   description: t("description4"),
-    //   stack: "C++ / OpenGl",
-    //   links: ["https://github.com/luisgomes2002/Hiro"],
-    //   status: t("status4"),
-    // },
-    // {
-    //   id: 5,
-    //   name: "RPG Game",
-    //   images: [BlackImg],
-    //   description: t("description5"),
-    //   stack: "C# / Unity",
-    //   links: ["https://github.com/luisgomes2002/RPG"],
-    //   status: t("status5"),
-    // },
   ];
 
   const HandleOpenProject = (project) => {
@@ -129,14 +99,13 @@ function Home() {
           <i className="devicon-javascript-plain"></i>
           <i className="devicon-typescript-plain"></i>
           <i className="devicon-react-original"></i>
-          <i className="devicon-angularjs-plain"></i>
           <i className="devicon-nodejs-plain-wordmark"></i>
-          <i className="devicon-csharp-plain"></i>
-          <i className="devicon-dotnetcore-plain"></i>
           <i className="devicon-mysql-original"></i>
+          <i class="devicon-postgresql-plain"></i>
           <i className="devicon-mongodb-plain"></i>
-          <i className="devicon-cplusplus-plain"></i>
           <i className="devicon-git-plain"></i>
+          <i className="devicon-csharp-plain"></i>
+          <i class="devicon-unity-plain"></i>
         </section>
       </div>
     </div>
