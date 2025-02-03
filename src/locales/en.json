@@ -2,23 +2,25 @@
   "navInfo1": "ABOUT ME",
   "navInfo2": "PROJECTS",
   "navInfo3": "SKILLS",
+
   "introduction": "HELLO, I AM LUIS!",
-  "about": "I AM 22 YEARS OLD, A COMPUTER ENGINEERING STUDENT WITH 1 YEAR OF EXPERIENCE WORKING AS A FREELANCER AND ON PERSONAL PROJECTS.",
+  "about": "I AM 22 YEARS OLD, A COMPUTER ENGINEERING STUDENT WITH 1 YEAR OF EXPERIENCE WORKING AS A FREELANCER AND ON PERSONAL PROJECTS. CURRENTLY WORKING AS FULLSTACK AT ZTHA.",
+
   "project": "My Projects",
-  "description1": "A site dedicated to people who want to learn Japanese, explore Japanese culture, and share their study experiences.",
+
+  "description1": "A site dedicated to Japanese language and culture enthusiasts, where users can learn Japanese, explore Japanese traditions and customs, and share their study experiences. The platform allows users to create personalized accounts, publish posts, interact with other members through comments and likes, and access exclusive study materials to enhance their language skills.",
   "status1": "In development",
-  "description2": "Ecommerce Site",
+  "deployStatus1": "GitHub repository",
+
+  "description2": "Landing page for Trifase Soluções Elétricas.",
   "status2": "In development",
-  "description3": "Landing page for Trifase Soluções Elétricas.",
-  "status3": "In development",
-  "description4": "Game Engine",
-  "status4": "In development",
-  "description5": "2D RPG game made with Unity",
-  "status5": "In development",
+  "deployStatus2": "GitHub repository",
+
   "knowledge": "My knowledge",
   "footerInfo": "© Copyright 2024 Automatize. All rights reserved.",
-  "RepositorioBtn": "Project",
+
   "Resumes": "Resumes",
+
   "PT": "Portuguese",
   "US": "English",
   "JP": "Japanese"

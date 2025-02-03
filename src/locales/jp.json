@@ -2,23 +2,25 @@
   "navInfo1": "私について",
   "navInfo2": "プロジェクト",
   "navInfo3": "スキル",
+
   "introduction": "こんにちは、ルイスです！",
-  "about": "私は22歳で、1年間フリーランサーとして、または個人プロジェクトに取り組んできたコンピュータ工学の学生です。",
+  "about": "私は22歳で、1年間フリーランサーとして、または個人プロジェクトに取り組んできたコンピュータ工学の学生です。現在、ZTHAでフルスタックとして働いています。",
+
   "project": "私のプロジェクト",
-  "description1": "日本語を学びたい人、日本文化を探求したい人、そして学習経験を共有したい人のためのサイト。",
+
+  "description1": "日本語と日本文化に興味を持つ人々のためのサイトです。ユーザーは日本語を学んだり、日本の伝統や習慣を探求したり、学習体験を共有したりできます。このプラットフォームでは、個人アカウントの作成、投稿の公開、他のメンバーとのコメントや「いいね」を通じた交流、そして言語スキルを向上させるための限定教材へのアクセスが可能です。。",
   "status1": "開発中",
-  "description2": "Eコマースサイト",
+  "deployStatus1": "GitHubリポジトリ",
+
+  "description2": "Trifase Soluções Elétricasのランディングページ。",
   "status2": "開発中",
-  "description3": "Trifase Soluções Elétricasのランディングページ。",
-  "status3": "開発中",
-  "description4": "ゲームエンジン",
-  "status4": "開発中",
-  "description5": "Unityで作られた2D RPGゲーム",
-  "status5": "開発中",
+  "deployStatus2": "GitHubリポジトリ",
+
   "knowledge": "私のスキル",
   "footerInfo": "© 著作権 2024 Automatize. 無断転載を禁じます。",
-  "RepositorioBtn": "プロジェクト",
+
   "Resumes": "履歴書",
+
   "PT": "ポルトガル語",
   "US": "英語",
   "JP": "日本語"

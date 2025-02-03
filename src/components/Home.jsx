@@ -8,12 +8,15 @@ import TrifaseImg1 from "../assets/TrifaseImg1.png";
 import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
 import ModalResume from "./modal/ModalResume";
+import { ProjectCard } from "./Card/ProjectCard";
 
 function Home() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const [openModalResume, setOpenModalResume] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+
+  const compProjects = [];
 
   const projectsLng = [
     {
@@ -22,24 +25,26 @@ function Home() {
       images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
       description: t("description1"),
       stack: "JavaScript / ReacJs / Styled Component / NodeJs / MongoDb",
-      links: ["https://github.com/luisgomes2002/JapaneseSite"],
+      links: "https://github.com/luisgomes2002/JapaneseSite",
       status: t("status1"),
+      deploy: t("deployStatus1"),
     },
     {
-      id: 3,
+      id: 2,
       name: "Trifase",
       images: [TrifaseImg1],
-      description: t("description3"),
+      description: t("description2"),
       stack: "Html / Css / JavaScript",
-      links: ["https://github.com/luisgomes2002/Trifase"],
-      status: t("status3"),
+      links: "https://github.com/luisgomes2002/Trifase",
+      status: t("status2"),
+      deploy: t("deployStatus2"),
     },
   ];
 
-  const HandleOpenProject = (project) => {
-    setSelectedProject(project);
-    setOpenModal(true);
-  };
+  // const HandleOpenProject = (project) => {
+  //   setSelectedProject(project);
+  //   setOpenModal(true);
+  // };
 
   const HandleOpenResume = () => {
     setOpenModalResume(true);
@@ -64,23 +69,28 @@ function Home() {
         <p>{t("about")}</p>
       </div>
 
+      {/* <div id="companies" className="companies">
+        <h1>{t("companies")}</h1>
+        <div className="compCard">
+          {compProjects.map((compProjects) => (
+            <div className="projetInfo">
+              <img src={compProjects.images[0]} alt="CompProjectsImg" />
+              <section>
+                <p>Status: {compProjects.status}</p>
+                <h1>{compProjects.name}</h1>
+                <h2>{compProjects.description}</h2>
+                <h3>{compProjects.stack}</h3>
+              </section>
+            </div>
+          ))}
+        </div>
+      </div> */}
+
       <div id="projects" className="projects">
         <h1>{t("project")}</h1>
         <div className="card">
-          {projectsLng.map((project) => (
-            <button
-              onClick={() => HandleOpenProject(project)}
-              className="projectsInfo"
-              key={project.id}
-            >
-              <img src={project.images[0]} alt="ProjImg" />
-              <section>
-                <p>{project.status}</p>
-                <h1>{project.name}</h1>
-                <h2>{project.description}</h2>
-                <h3>{project.stack}</h3>
-              </section>
-            </button>
+          {projectsLng.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>
@@ -98,17 +108,14 @@ function Home() {
         <section>
           <i className="devicon-javascript-plain"></i>
           <i className="devicon-typescript-plain"></i>
-          <i class="devicon-java-plain-wordmark"></i>
+          <i className="devicon-java-plain-wordmark"></i>
           <i className="devicon-react-original"></i>
           <i className="devicon-nodejs-plain-wordmark"></i>
-          <i class="devicon-spring-original"></i>
+          <i className="devicon-spring-original"></i>
           <i className="devicon-mysql-original"></i>
-          <i class="devicon-postgresql-plain"></i>
+          <i className="devicon-postgresql-plain"></i>
           <i className="devicon-mongodb-plain"></i>
           <i className="devicon-git-plain"></i>
-
-          {/* <i className="devicon-csharp-plain"></i>
-          <i class="devicon-unity-plain"></i> */}
         </section>
       </div>
     </div>

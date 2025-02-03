@@ -2,23 +2,27 @@
   "navInfo1": "SOBRE MIM",
   "navInfo2": "PROJETOS",
   "navInfo3": "CONHECIMENTOS",
+
   "introduction": "OLÁ, EU SOU LUIS!",
-  "about": "TENHO 22 ANOS SOU ESTUDANTE DE ENGENHARIA DA COMPUTAÇÃO COM 1 ANO DE EXPERIÊNCIA TRABALHANDO COM FREELANCER E PROJETOS PRÓPRIOS.",
+  "about": "TENHO 22 ANOS SOU ESTUDANTE DE ENGENHARIA DA COMPUTAÇÃO COM 1 ANO DE EXPERIÊNCIA TRABALHANDO COM FREELANCER E PROJETOS PRÓPRIOS. ATUALMENTE TRABALHO COMO FULLSTACK NA ZTHA.",
+
+  "companies": "Projetos que participei",
+
   "project": "Meus Projetos",
-  "description1": "Site dedicado a pessoas que querem aprender japonês, explorar a cultura japonesa e compartilhar suas experiências de estudo",
+
+  "description1": "Site dedicado a entusiastas da língua e cultura japonesa, onde os usuários podem aprender japonês, explorar tradições e costumes do Japão, e compartilhar suas experiências de estudo. A plataforma oferece a possibilidade de criar uma conta personalizada, publicar posts, interagir com outros membros por meio de comentários e curtidas, e acessar materiais de estudo exclusivos para aprimorar o conhecimento do idioma",
   "status1": "Em desenvolvimento",
-  "description2": "Site para Ecommerce",
+  "deployStatus1": "Repositorio do GitHub",
+
+  "description2": "Landing page para Trifase Soluções Elétricas",
   "status2": "Em desenvolvimento",
-  "description3": "Landing page da Trifase Soluções Elétricas",
-  "status3": "Em desenvolvimento",
-  "description4": "Game Engine",
-  "status4": "Em desenvolvimento",
-  "description5": "Um jogo RPG 2D criado na Unity",
-  "status5": "Em desenvolvimento",
+  "deployStatus2": "Repositorio do GitHub",
+
   "knowledge": "Meus Conhecimentos",
   "footerInfo": "© Copyright 2024 Automatize. Todos os direitos reservados.",
-  "RepositorioBtn": "Projeto",
+
   "Resumes": "Currículos",
+
   "PT": "Português",
   "US": "Inglês",
   "JP": "Japonês"

@@ -15,7 +15,7 @@
     color: #fff;
     font-size: 130px;
     margin-left: -8px;
-
+    font-weight: 900;
     i {
       color: #cec4c4;
       margin: 0 3%;
@@ -35,6 +35,7 @@
     margin-top: 2%;
     font-size: 15px;
     color: #fff;
+    font-weight: 600;
   }
 
   button {
@@ -57,31 +58,26 @@
 }
 
 .card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  margin: 5% 0;
 }
 
 .projectsInfo {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  background-color: #202024;
-  border: 2px solid #353333;
-  height: 600px;
-  width: 90%;
-  border-radius: 15px;
-  margin: 5%;
-  cursor: pointer;
+  justify-content: space-between;
+  margin: 3% 0;
+
+  text-align: left;
 
   img {
-    width: 100%;
-    border-radius: 15px 15px 0 0;
-    height: 330px;
+    border: #8a8989 solid 1px;
+    border-radius: 5px;
   }
 
   h1 {
-    font-size: 25px;
+    font-size: 40px;
     margin-bottom: 2%;
   }
 
@@ -89,21 +85,38 @@
     color: #fff;
     font-size: 18px;
     margin-bottom: 2%;
+    font-weight: 600;
   }
 
   h3 {
+    color: #999696;
+    font-size: 15px;
+    margin-bottom: 2%;
+  }
+
+  a {
     color: #6f00ff;
     font-size: 15px;
+    text-decoration: none;
+    font-weight: 600;
   }
 
   p {
     color: #999696;
-    margin: 3% 0;
   }
+}
+
+.projectsInfo.left {
+  flex-direction: row;
 
   section {
+    width: 47%;
     padding: 0 5%;
   }
+}
+
+.projectsInfo.right {
+  flex-direction: row-reverse;
 }
 
 .knowledge {

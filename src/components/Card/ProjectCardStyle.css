@@ -1,0 +1,31 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel img {
+  height: 400px;
+  width: 800px;
+  display: block;
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #717171;
+}
