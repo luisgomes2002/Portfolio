@@ -98,14 +98,17 @@ function Home() {
         <section>
           <i className="devicon-javascript-plain"></i>
           <i className="devicon-typescript-plain"></i>
+          <i class="devicon-java-plain-wordmark"></i>
           <i className="devicon-react-original"></i>
           <i className="devicon-nodejs-plain-wordmark"></i>
+          <i class="devicon-spring-original"></i>
           <i className="devicon-mysql-original"></i>
           <i class="devicon-postgresql-plain"></i>
           <i className="devicon-mongodb-plain"></i>
           <i className="devicon-git-plain"></i>
-          <i className="devicon-csharp-plain"></i>
-          <i class="devicon-unity-plain"></i>
+
+          {/* <i className="devicon-csharp-plain"></i>
+          <i class="devicon-unity-plain"></i> */}
         </section>
       </div>
     </div>
