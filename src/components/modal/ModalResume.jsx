@@ -1,8 +1,8 @@
 import "./ModalStyle.css";
 import { useTranslation } from "react-i18next";
-import ResumePT from "../../resumes/ResumePT.pdf";
-import ResumeUS from "../../resumes/ResumeUS.pdf";
-import ResumeJP from "../../resumes/ResumeJP.pdf";
+import ResumePT from "../../resumes/ResumePT.docx";
+import ResumeEN from "../../resumes/ResumeEN.docx";
+import ResumeJP from "../../resumes/ResumeJP.docx";
 
 const ModalResume = ({ onClose }) => {
   const { t } = useTranslation();
@@ -13,19 +13,19 @@ const ModalResume = ({ onClose }) => {
         <section>
           <div>
             <h2>{t("PT")}</h2>
-            <a href={ResumePT} download>
+            <a href={ResumePT} download="ResumePT.docx">
               <i className="fa-solid fa-file" />
             </a>
           </div>
           <div>
             <h2>{t("US")}</h2>
-            <a href={ResumeUS} download>
+            <a href={ResumeEN} download="ResumeEN.docx">
               <i className="fa-solid fa-file" />
             </a>
           </div>
           <div>
             <h2>{t("JP")}</h2>
-            <a href={ResumeJP} download>
+            <a href={ResumeJP} download="ResumeJP.docx">
               <i className="fa-solid fa-file" />
             </a>
           </div>
