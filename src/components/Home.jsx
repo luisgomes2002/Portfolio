@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./HomeStyle.css";
-import MurasakiImg1 from "../assets/MurasakiImg1.png";
-import MurasakiImg2 from "../assets/MurasakiImg2.png";
-import MurasakiImg3 from "../assets/MurasakiImg3.png";
+import MurasakiImg1 from "../assets/muraski-prototype/MurasakiImg1.png";
+import MurasakiImg2 from "../assets/muraski-prototype/MurasakiImg2.png";
+import MurasakiImg3 from "../assets/muraski-prototype/MurasakiImg3.png";
 import TrifaseImg1 from "../assets/TrifaseImg1.png";
+import Card from "../assets/muraski/cards.png";
+import HomeImg from "../assets/muraski/home.png";
+import Login from "../assets/muraski/login.png";
+import Subscriptions from "../assets/muraski/subscriptions.png";
 import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
 import ModalResume from "./modal/ModalResume";
@@ -22,10 +26,11 @@ function Home() {
     {
       id: 1,
       name: "Murasaki",
-      images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
+      images: [HomeImg, Card, Login, Subscriptions],
       description: t("description1"),
-      stack: "JavaScript / ReacJs / Styled Component / NodeJs / MongoDb",
-      links: "https://github.com/luisgomes2002/JapaneseSite",
+      stack:
+        "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
+      links: "https://github.com/luisgomes2002/Murasaki-Languages",
       status: t("status1"),
       deploy: t("deployStatus1"),
     },
@@ -39,6 +44,16 @@ function Home() {
       status: t("status2"),
       deploy: t("deployStatus2"),
     },
+    // {
+    //   id: 3,
+    //   name: "Murasaki-Prototype",
+    //   images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
+    //   description: t("description1"),
+    //   stack: "JavaScript / ReactJs / Styled Component / Zod / NodeJs / MongoDb",
+    //   links: "https://github.com/luisgomes2002/JapaneseSite",
+    //   status: t("status1"),
+    //   deploy: t("deployStatus1"),
+    // },
   ];
 
   // const HandleOpenProject = (project) => {

@@ -145,12 +145,6 @@
 
 @media (max-width: 1470px) {
   .projectsInfo {
-    height: 520px;
-
-    img {
-      height: 280px;
-    }
-
     h1 {
       font-size: 20px;
     }
