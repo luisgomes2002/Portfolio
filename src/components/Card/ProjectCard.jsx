@@ -1,23 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./ProjectCardStyle.css";
 
 export function ProjectCard({ project, index }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const intervalRef = useRef(null); // para guardar a referência do intervalo
 
-  useEffect(() => {
+  const startCarousel = () => {
     if (project.images.length > 1) {
-      const interval = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         setCurrentImageIndex(
           (prevIndex) => (prevIndex + 1) % project.images.length,
         );
       }, 3000);
-
-      return () => clearInterval(interval);
     }
+  };
+
+  useEffect(() => {
+    startCarousel();
+
+    return () => clearInterval(intervalRef.current);
   }, [project.images.length]);
 
   const handleDotClick = (index) => {
-    setCurrentImageIndex(index);
+    clearInterval(intervalRef.current); // parar o intervalo atual
+    setCurrentImageIndex(index); // ir para a imagem clicada
+    startCarousel(); // reiniciar o intervalo
   };
 
   return (

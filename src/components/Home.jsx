@@ -13,6 +13,7 @@ import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
 import ModalResume from "./modal/ModalResume";
 import { ProjectCard } from "./Card/ProjectCard";
+import Dashboard from "../assets/muraski/dashboard.png";
 
 function Home() {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ function Home() {
     {
       id: 1,
       name: "Murasaki",
-      images: [HomeImg, Card, Login, Subscriptions],
+      images: [HomeImg, Card, Login, Subscriptions, Dashboard],
       description: t("description1"),
       stack:
         "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
@@ -44,16 +45,16 @@ function Home() {
       status: t("status2"),
       deploy: t("deployStatus2"),
     },
-    // {
-    //   id: 3,
-    //   name: "Murasaki-Prototype",
-    //   images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
-    //   description: t("description1"),
-    //   stack: "JavaScript / ReactJs / Styled Component / Zod / NodeJs / MongoDb",
-    //   links: "https://github.com/luisgomes2002/JapaneseSite",
-    //   status: t("status1"),
-    //   deploy: t("deployStatus1"),
-    // },
+    {
+      id: 3,
+      name: "Murasaki-Prototype",
+      images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
+      description: t("description1"),
+      stack: "JavaScript / ReactJs / Styled Component / Zod / NodeJs / MongoDb",
+      links: "https://github.com/luisgomes2002/JapaneseSite",
+      status: t("status1"),
+      deploy: t("deployStatus1"),
+    },
   ];
 
   // const HandleOpenProject = (project) => {
