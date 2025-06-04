@@ -8,6 +8,7 @@ import TrifaseImg1 from "../assets/TrifaseImg1.png";
 import Card from "../assets/muraski/cards.png";
 import HomeImg from "../assets/muraski/home.png";
 import Login from "../assets/muraski/login.png";
+import User from "../assets/muraski/user.png";
 import Subscriptions from "../assets/muraski/subscriptions.png";
 import Modal from "./modal/Modal";
 import BlackImg from "../assets/BlackImg.jpg";
@@ -27,7 +28,7 @@ function Home() {
     {
       id: 1,
       name: "Murasaki",
-      images: [HomeImg, Card, Login, Subscriptions, Dashboard],
+      images: [HomeImg, Card, Login, Subscriptions, Dashboard, User],
       description: t("description1"),
       stack:
         "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
