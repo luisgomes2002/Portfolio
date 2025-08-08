@@ -34,7 +34,7 @@ function Home() {
         "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
       links: "https://murasakilanguages.com/",
       status: t("status1"),
-      deploy: t("deployStatus1"),
+      deploy: "Site",
     },
     {
       id: 2,
