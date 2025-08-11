@@ -31,7 +31,7 @@ function Home() {
       images: [HomeImg, Card, Login, Subscriptions, Dashboard, User],
       description: t("description1"),
       stack:
-        "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
+        "Typescript / React / SCSS / Zod / Java / SpringBoot / MongoDb / Redis / Docker / AI",
       links: "https://murasakilanguages.com/",
       status: "Em Produção",
       deploy: "Site",
