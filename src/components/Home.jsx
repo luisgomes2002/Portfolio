@@ -46,7 +46,7 @@ function Home() {
       status: t("status2"),
       deploy: t("deployStatus2"),
     },
-    
+    {
       id: 3,
       name: "Murasaki-Prototype",
        images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
