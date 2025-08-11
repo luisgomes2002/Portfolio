@@ -33,7 +33,7 @@ function Home() {
       stack:
         "Typescript / React / SCSS / Zod / Java / MongoDb / Redis / Docker / AI",
       links: "https://murasakilanguages.com/",
-      status: t("status1"),
+      status: "Em Produção",
       deploy: "Site",
     },
     {
