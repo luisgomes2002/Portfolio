@@ -41,7 +41,7 @@ function Home() {
       name: "Trifase",
       images: [TrifaseImg1],
       description: t("description2"),
-      stack: "Html / Css / JavaScript",
+      stack: "React / CSS",
       links: "https://trifaseenergiasolar.com/",
       status: "Em Produção",
       deploy: "Site",
