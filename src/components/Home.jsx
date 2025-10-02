@@ -4,7 +4,10 @@ import "./HomeStyle.css";
 import MurasakiImg1 from "../assets/muraski-prototype/MurasakiImg1.png";
 import MurasakiImg2 from "../assets/muraski-prototype/MurasakiImg2.png";
 import MurasakiImg3 from "../assets/muraski-prototype/MurasakiImg3.png";
-import TrifaseImg1 from "../assets/TrifaseImg1.png";
+import TrifaseImg1 from "../assets/trifase/TrifaseImg1.png";
+import TrifaseImg2 from "../assets/trifase/TrifaseImg2.png";
+import TrifaseImg3 from "../assets/trifase/TrifaseImg3.png";
+import TrifaseImg4 from "../assets/trifase/TrifaseImg4.png";
 import Card from "../assets/muraski/cards.png";
 import HomeImg from "../assets/muraski/home.png";
 import Login from "../assets/muraski/login.png";
@@ -39,7 +42,7 @@ function Home() {
     {
       id: 2,
       name: "Trifase",
-      images: [TrifaseImg1],
+      images: [TrifaseImg1, TrifaseImg2, TrifaseImg3, TrifaseImg4],
       description: t("description2"),
       stack: "React / CSS",
       links: "https://trifaseenergiasolar.com/",
