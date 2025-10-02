@@ -42,20 +42,20 @@ function Home() {
       images: [TrifaseImg1],
       description: t("description2"),
       stack: "Html / Css / JavaScript",
-      links: "https://github.com/luisgomes2002/Trifase",
-      status: t("status2"),
-      deploy: t("deployStatus2"),
+      links: "https://trifaseenergiasolar.com/",
+      status: "Em Produção",
+      deploy: "Site",
     },
     {
       id: 3,
       name: "Murasaki-Prototype",
-       images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
+      images: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
       description: t("description1"),
       stack: "JavaScript / ReactJs / Styled Component / Zod / NodeJs / MongoDb",
-       links: "https://github.com/luisgomes2002/JapaneseSite",
-     status: t("status1"),
+      links: "https://github.com/luisgomes2002/JapaneseSite",
+      status: t("status1"),
       deploy: t("deployStatus1"),
-     },
+    },
   ];
 
   // const HandleOpenProject = (project) => {
