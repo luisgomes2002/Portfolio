@@ -37,7 +37,7 @@ export const i18nJson = {
     dlPt: "Baixar PDF",
     dlEn: "Baixar PDF",
     dlJp: "Baixar PDF",
-    pdesc1: "Plataforma de aprendizado de idiomas em produção",
+    pdesc1: "Plataforma de aprendizado de idiomas",
     pdesc2: "Site para empresa de energia solar",
     pdesc3: "Versão inicial da plataforma Murasaki",
     arch: "Arquivado",
@@ -61,7 +61,7 @@ export const i18nJson = {
     dlPt: "Download PDF",
     dlEn: "Download PDF",
     dlJp: "Download PDF",
-    pdesc1: "Language learning platform in production",
+    pdesc1: "Language learning platform",
     pdesc2: "Website for a solar energy company",
     pdesc3: "Initial version of the Murasaki platform",
     arch: "Archived",
@@ -85,7 +85,7 @@ export const i18nJson = {
     dlPt: "PDFダウンロード",
     dlEn: "PDFダウンロード",
     dlJp: "PDFダウンロード",
-    pdesc1: "稼働中の語学学習プラットフォーム",
+    pdesc1: "語学学習プラットフォーム",
     pdesc2: "太陽光発電会社のウェブサイト",
     pdesc3: "Murasakiプラットフォームの初期バージョン",
     arch: "アーカイブ済み",
@@ -131,17 +131,6 @@ const Portfolio = () => {
     {
       id: "car3",
       num: "03",
-      title: "health-manager-backend",
-      status: t.development,
-      isLive: false,
-      descKey: "pdesc2",
-      stack: "NestJS · Postgres · Redis · Prisma",
-      slides: [],
-      link: "https://github.com/luisgomes2002/Manager-Backend-TypeScript",
-    },
-    {
-      id: "car4",
-      num: "04",
       title: "Murasaki Languages Prototype",
       status: t.arch,
       isLive: false,
@@ -150,6 +139,17 @@ const Portfolio = () => {
         "JavaScript · React · Styled Components · Node.js · Express · MongoDB",
       slides: [MurasakiImg1, MurasakiImg2, MurasakiImg3],
       link: "https://github.com/luisgomes2002/Murasaki-Languages-Prototype",
+    },
+    {
+      id: "car4",
+      num: "04",
+      title: "health-manager-backend",
+      status: t.development,
+      isLive: false,
+      descKey: "pdesc2",
+      stack: "NestJS · Postgres · Redis · Prisma",
+      slides: [],
+      link: "https://github.com/luisgomes2002/Manager-Backend-TypeScript",
     },
   ];
 
@@ -196,6 +196,7 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
+
         <button
           className="carousel-btn prev"
           onClick={(e) => {
@@ -203,8 +204,17 @@ const Portfolio = () => {
             handleCarMove(project.id, -1, count);
           }}
         >
-          ‹
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 6L9 12L15 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
+
         <button
           className="carousel-btn next"
           onClick={(e) => {
@@ -212,7 +222,15 @@ const Portfolio = () => {
             handleCarMove(project.id, 1, count);
           }}
         >
-          ›
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 6L15 12L9 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
         <div className="carousel-nav">
           {project.slides.map((_, i) => (
