@@ -1,21 +1,19 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import enTranslation from "./locales/en.json";
-import ptTranslation from "./locales/pt.json";
-import jpTranslation from "./locales/jp.json";
+import { i18nJson } from "./components/Portfolio";
 
 i18n.use(initReactI18next).init({
   lng: "pt",
   fallbackLng: "en",
   resources: {
     pt: {
-      translation: ptTranslation,
+      translation: i18nJson.pt,
     },
     en: {
-      translation: enTranslation,
+      translation: i18nJson.en,
     },
     jp: {
-      translation: jpTranslation,
+      translation: i18nJson.jp,
     },
   },
   interpolation: {
