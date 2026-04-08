@@ -418,6 +418,7 @@ const Portfolio = () => {
               <div className="project-main">
                 <div className="project-header">
                   <h3>{project.title}</h3>
+
                   <span
                     className={`project-badge ${
                       project.isLive
@@ -429,6 +430,28 @@ const Portfolio = () => {
                   >
                     {project.status}
                   </span>
+                  <svg
+                    className="project-link-icon"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M14 5H19V10M19 5L10 14"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M19 14V19H5V5H10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
                 <p className="project-desc">{t[project.descKey]}</p>
                 <div className="project-stack">{project.stack}</div>
