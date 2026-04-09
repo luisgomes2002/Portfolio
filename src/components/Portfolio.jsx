@@ -65,7 +65,7 @@ export const i18nJson = {
     pdesc1: "Language learning platform",
     pdesc2: "Website for a solar energy company",
     pdesc3: "Initial version of the Murasaki platform",
-    pdesc4: "Platform for healthcare professionals",
+    pdesc4: "management platform for healthcare professionals.",
     arch: "Archived",
     development: "Development",
     navInfo1: "ABOUT ME",
