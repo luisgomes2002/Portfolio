@@ -113,7 +113,7 @@ const Portfolio = () => {
       isLive: true,
       descKey: "pdesc1",
       stack:
-        "TypeScript · React · Styled Components · Java · SpringBoot · MongoDB · Arquitetura · Limpa Redis · AI ·  Google Vision · Google Cloud Storage · Strip ·  Docker · NGINX · Prometheus · Grafana",
+        "TypeScript · React · Styled Components · Java · Spring Boot · MongoDB · Arquitetura · Limpa Redis · AI ·  Google Vision · Google Cloud Storage · Strip ·  Docker · NGINX · Prometheus · Grafana",
       slides: [home, lesson, anki, curso, yomi],
       link: "https://murasakilanguages.com/",
     },
@@ -147,9 +147,9 @@ const Portfolio = () => {
       status: t.development,
       isLive: false,
       descKey: "pdesc2",
-      stack: "NestJS · Postgres · Redis · Prisma",
+      stack: " Java · Spring Boot · Postgres · Redis · JPA",
       slides: [],
-      link: "https://github.com/luisgomes2002/Manager-Backend-TypeScript",
+      link: "https://github.com/luisgomes2002/health-manager-backend",
     },
   ];
 
