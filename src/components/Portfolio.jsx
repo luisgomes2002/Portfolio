@@ -116,7 +116,7 @@ const Portfolio = () => {
       isLive: true,
       descKey: "pdesc1",
       stack:
-        "TypeScript · React · Styled Components · Java · Spring Boot · MongoDB · Arquitetura · Limpa Redis · AI ·  Google Vision · Google Cloud Storage · Strip ·  Docker · NGINX · Prometheus · Grafana",
+        "TypeScript · React · Styled Components · Java · Spring Boot · MongoDB · Arquitetura Limpa · Redis · AI ·  Google Vision · Google Cloud Storage · Strip ·  Docker · NGINX · Prometheus · Grafana",
       slides: [home, lesson, anki, curso, yomi],
       link: "https://murasakilanguages.com/",
     },
