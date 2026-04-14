@@ -41,8 +41,11 @@ export const i18nJson = {
     pdesc2: "Site para empresa de energia solar",
     pdesc3: "Versão inicial da plataforma Murasaki",
     pdesc4: "Plataforma de gestão para profissionais da saúde",
+    pdesc5: "Projeto de estudo sobre microsserviços com RabbitMQ",
+    pdesc6: "Projeto de estudo sobre microsserviços com Kafka",
     arch: "Arquivado",
     development: "Desenvolvimento",
+    study: "Para Estudo",
     navInfo1: "SOBRE MIM",
     navInfo2: "PROJETOS",
     navInfo3: "CONHECIMENTOS",
@@ -66,8 +69,11 @@ export const i18nJson = {
     pdesc2: "Website for a solar energy company",
     pdesc3: "Initial version of the Murasaki platform",
     pdesc4: "management platform for healthcare professionals.",
+    pdesc5: "Study project on microservices with RabbitMQ",
+    pdesc6: "Study project on microservices with Kafka",
     arch: "Archived",
     development: "Development",
+    study: "For study",
     navInfo1: "ABOUT ME",
     navInfo2: "PROJECTS",
     navInfo3: "SKILLS",
@@ -91,8 +97,11 @@ export const i18nJson = {
     pdesc2: "太陽光発電会社のウェブサイト",
     pdesc3: "Murasakiプラットフォームの初期バージョン",
     pdesc4: "医療専門職向けの管理プラットフォーム",
+    pdesc5: "RabbitMQを使ったマイクロサービスの学習プロジェクト",
+    pdesc6: "Kafkaを使ったマイクロサービスの学習プロジェクト",
     arch: "アーカイブ済み",
     development: "発達",
+    study: "学習用",
     navInfo1: "私について",
     navInfo2: "プロジェクト",
     navInfo3: "スキル",
@@ -154,6 +163,28 @@ const Portfolio = () => {
       slides: [],
       link: "https://github.com/luisgomes2002/health-manager-backend",
     },
+    {
+      id: "car5",
+      num: "05",
+      title: "Microsservices-Email-RabbitMQ",
+      status: t.study,
+      isLive: false,
+      descKey: "pdesc5",
+      stack: " Java · Spring Boot · Postgres · RabbitMQ ",
+      slides: [],
+      link: "https://github.com/luisgomes2002/Microsservices-Email-RabbitMQ",
+    },
+    // {
+    //   id: "car6",
+    //   num: "06",
+    //   title: "Kafka",
+    //   status: t.study,
+    //   isLive: false,
+    //   descKey: "pdesc6",
+    //   stack: " Java · Spring Boot · Postgres · Kafka ",
+    //   slides: [],
+    //   link: "",
+    // },
   ];
 
   useEffect(() => {
@@ -446,7 +477,9 @@ const Portfolio = () => {
                         ? "badge-live"
                         : project.status === t.development
                           ? "badge-development"
-                          : "badge-archived"
+                          : project.status === t.study
+                            ? "badge-study"
+                            : "badge-archived"
                     }`}
                   >
                     {project.status}
@@ -490,6 +523,18 @@ const Portfolio = () => {
         <div className="section-label">{t.stackLabel}</div>
         <div className="tech-grid">
           <div className="tech-item">
+            <i className="devicon-java-plain-wordmark"></i>
+            <span>Java</span>
+          </div>
+          <div className="tech-item">
+            <i className="devicon-spring-original"></i>
+            <span>Spring</span>
+          </div>
+          <div className="tech-item">
+            <i className="devicon-postgresql-plain"></i>
+            <span>Postgres</span>
+          </div>
+          <div className="tech-item">
             <i className="devicon-javascript-plain"></i>
             <span>JavaScript</span>
           </div>
@@ -501,50 +546,30 @@ const Portfolio = () => {
             <i className="devicon-react-original"></i>
             <span>React / React Native</span>
           </div>
-          <div className="tech-item">
-            <i className="devicon-nodejs-plain-wordmark"></i>
-            <span>Node</span>
-          </div>
+
           <div className="tech-item">
             <i className="devicon-git-plain"></i>
             <span>Git</span>
           </div>
+
           <div className="tech-item">
-            <i className="devicon-java-plain-wordmark"></i>
-            <span>Java</span>
-          </div>
-          <div className="tech-item">
-            <i className="devicon-spring-original"></i>
-            <span>Spring</span>
-          </div>
-          {/* <div className="tech-item">
             <i className="devicon-mysql-original"></i>
             <span>MySQL</span>
-          </div> */}
-          <div className="tech-item">
-            <i className="devicon-postgresql-plain"></i>
-            <span>Postgres</span>
           </div>
+
           <div className="tech-item">
             <i className="devicon-mongodb-plain"></i>
             <span>Mongo</span>
           </div>
-          <div className="tech-item">
-            <i class="devicon-prisma-original"></i>
-            <span>Prisma</span>
-          </div>
+
           <div className="tech-item">
             <i class="devicon-redis-plain"></i>
             <span>Redis</span>
           </div>
-          <div className="tech-item">
-            <i class="devicon-express-original"></i>
-            <span>Express</span>
-          </div>
-          <div className="tech-item">
+          {/* <div className="tech-item">
             <i class="devicon-nestjs-original"></i>
             <span>NestJS</span>
-          </div>
+          </div> */}
           <div className="tech-item">
             <i class="devicon-docker-plain"></i>
             <span>Docker</span>
@@ -553,11 +578,23 @@ const Portfolio = () => {
             <i class="devicon-nginx-original"></i>
             <span>NGINX</span>
           </div>
+          <div className="tech-item">
+            <i className="devicon-nodejs-plain-wordmark"></i>
+            <span>Node</span>
+          </div>
+          <div className="tech-item">
+            <i class="devicon-express-original"></i>
+            <span>Express</span>
+          </div>
+          <div className="tech-item">
+            <i class="devicon-prisma-original"></i>
+            <span>Prisma</span>
+          </div>
           {/* <div className="tech-item">
             <i class="devicon-postman-plain"></i>
             <span>Postman</span>
-          </div>
-          <div className="tech-item">
+          </div> */}
+          {/* <div className="tech-item">
             <i class="devicon-styledcomponents-plain"></i>
             <span>Styled Components</span>
           </div> */}

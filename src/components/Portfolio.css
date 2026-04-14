@@ -204,6 +204,13 @@ nav {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.35);
 }
+
+.badge-study {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 0.5px solid rgba(59, 130, 246, 0.25);
+}
+
 .resume-flag {
   width: 22px;
   height: 14px;
