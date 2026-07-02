@@ -20,6 +20,11 @@ import resumePt from "../resumes/luis_gustavo_pt_cv.pdf";
 import resumeEn from "../resumes/luis_gustavo_en_cv.pdf";
 import resumeJp from "../resumes/luis_gustavo_jp_cv.pdf";
 
+import hellos1 from "../assets/hellos/img1.png";
+import hellos2 from "../assets/hellos/img2.png";
+import hellos3 from "../assets/hellos/img3.png";
+import hellos4 from "../assets/hellos/img4.png";
+
 export const i18nJson = {
   pt: {
     tag: "Fullstack Developer",
@@ -43,9 +48,15 @@ export const i18nJson = {
     pdesc4: "Plataforma de gestão para profissionais da saúde",
     pdesc5: "Projeto de estudo sobre microsserviços com RabbitMQ",
     pdesc6: "Projeto de estudo sobre microsserviços com Kafka",
+    pdesc7:
+      "Sistema desktop de gestão hoteleira com módulos de reservas, quartos, hóspedes, relatórios e auditoria",
     arch: "Arquivado",
     development: "Desenvolvimento",
     study: "Para Estudo",
+    freelance: "Freelancer",
+    catPersonal: "Pessoal",
+    catFreelance: "Freelancer",
+    catStudy: "Estudo",
     navInfo1: "SOBRE MIM",
     navInfo2: "PROJETOS",
     navInfo3: "CONHECIMENTOS",
@@ -71,9 +82,15 @@ export const i18nJson = {
     pdesc4: "management platform for healthcare professionals.",
     pdesc5: "Study project on microservices with RabbitMQ",
     pdesc6: "Study project on microservices with Kafka",
+    pdesc7:
+      "Desktop hotel management system with modules for reservations, rooms, guests, reports and audit",
     arch: "Archived",
     development: "Development",
     study: "For study",
+    freelance: "Freelance",
+    catPersonal: "Personal",
+    catFreelance: "Freelance",
+    catStudy: "Study",
     navInfo1: "ABOUT ME",
     navInfo2: "PROJECTS",
     navInfo3: "SKILLS",
@@ -99,9 +116,15 @@ export const i18nJson = {
     pdesc4: "医療専門職向けの管理プラットフォーム",
     pdesc5: "RabbitMQを使ったマイクロサービスの学習プロジェクト",
     pdesc6: "Kafkaを使ったマイクロサービスの学習プロジェクト",
+    pdesc7:
+      "予約・客室・宿泊客・レポート・監査モジュールを備えたデスクトップホテル管理システム",
     arch: "アーカイブ済み",
     development: "発達",
     study: "学習用",
+    freelance: "フリーランス",
+    catPersonal: "個人",
+    catFreelance: "フリーランス",
+    catStudy: "学習",
     navInfo1: "私について",
     navInfo2: "プロジェクト",
     navInfo3: "スキル",
@@ -111,8 +134,20 @@ export const i18nJson = {
 const Portfolio = () => {
   const [lang, setLang] = useState("pt");
   const [isHovered, setIsHovered] = useState(false);
-  const [carousels, setCarousels] = useState({ car1: 0, car2: 0, car3: 0 });
+  const [carousels, setCarousels] = useState({ car1: 0, car2: 0, car3: 0, car4: 0 });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowRight") setLightbox((prev) => ({ ...prev, idx: (prev.idx + 1) % prev.slides.length }));
+      if (e.key === "ArrowLeft")  setLightbox((prev) => ({ ...prev, idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length }));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox]);
 
   const t = i18nJson[lang];
 
@@ -123,6 +158,7 @@ const Portfolio = () => {
       title: "Murasaki Languages",
       status: "Live",
       isLive: true,
+      category: "personal",
       descKey: "pdesc1",
       stack:
         "TypeScript · React · Styled Components · Java · Spring Boot · MongoDB · Clean Architecture · Redis · AI ·  Google Vision · Google Cloud Storage · Strip ·  Docker · NGINX · Prometheus · Grafana",
@@ -132,20 +168,35 @@ const Portfolio = () => {
     {
       id: "car2",
       num: "02",
+      title: "Hotel Ellus",
+      status: "Live",
+      isLive: true,
+      category: "freelance",
+      descKey: "pdesc7",
+      stack:
+        "Electron · TypeScript · React · SQLite · Radix UI · Zustand · Zod · React Hook Form · TanStack Table · Vite",
+      slides: [hellos1, hellos2, hellos3, hellos4],
+      link: "",
+    },
+    {
+      id: "car3",
+      num: "03",
       title: "Trifase",
       status: "Live",
       isLive: true,
+      category: "freelance",
       descKey: "pdesc2",
       stack: "React · CSS",
       slides: [trifaseImg1, trifaseImg2, trifaseImg3, trifaseImg4],
       link: "https://trifaseenergiasolar.com/",
     },
     {
-      id: "car3",
-      num: "03",
+      id: "car4",
+      num: "04",
       title: "Murasaki Languages Prototype",
       status: t.arch,
       isLive: false,
+      category: "study",
       descKey: "pdesc3",
       stack:
         "JavaScript · React · Styled Components · Node.js · Express · MongoDB",
@@ -153,27 +204,30 @@ const Portfolio = () => {
       link: "https://github.com/luisgomes2002/Murasaki-Languages-Prototype",
     },
     {
-      id: "car4",
-      num: "04",
+      id: "car5",
+      num: "05",
       title: "health-manager-backend",
       status: t.development,
       isLive: false,
+      category: "study",
       descKey: "pdesc4",
       stack: " Java · Spring Boot · Postgres · Redis · JPA",
       slides: [],
       link: "https://github.com/luisgomes2002/health-manager-backend",
     },
     {
-      id: "car5",
-      num: "05",
+      id: "car6",
+      num: "06",
       title: "Microsservices-Email-RabbitMQ",
       status: t.study,
       isLive: false,
+      category: "study",
       descKey: "pdesc5",
       stack: " Java · Spring Boot · Postgres · RabbitMQ ",
       slides: [],
       link: "https://github.com/luisgomes2002/Microsservices-Email-RabbitMQ",
     },
+
     // {
     //   id: "car6",
     //   num: "06",
@@ -191,9 +245,11 @@ const Portfolio = () => {
     if (isHovered) return;
     const autoId = setInterval(() => {
       setCarousels((prev) => ({
+        ...prev,
         car1: (prev.car1 + 1) % projectsData[0].slides.length,
         car2: (prev.car2 + 1) % projectsData[1].slides.length,
         car3: (prev.car3 + 1) % projectsData[2].slides.length,
+        car4: (prev.car4 + 1) % projectsData[3].slides.length,
       }));
     }, 3000);
     return () => clearInterval(autoId);
@@ -226,7 +282,12 @@ const Portfolio = () => {
         >
           {project.slides.map((slide, i) => (
             <div key={i} className="carousel-slide">
-              <img src={slide} alt={`slide-${i}`} className="carousel-image" />
+              <img
+                src={slide}
+                alt={`slide-${i}`}
+                className="carousel-image"
+                onClick={(e) => { e.stopPropagation(); setLightbox({ slides: project.slides, idx: i }); }}
+              />
             </div>
           ))}
         </div>
@@ -455,65 +516,77 @@ const Portfolio = () => {
       {/* PROJECTS */}
       <div className="section" id="projects">
         <div className="section-label">{t.projectsLabel}</div>
-        <div className="projects-list">
-          {projectsData.map((project) => (
-            <div
-              className={`project-row ${project.link ? "clickable" : ""}`}
-              key={project.id}
-              onClick={() => {
-                if (project.link) {
-                  window.open(project.link, "_blank");
-                }
-              }}
-            >
-              <div className="project-num-col">{project.num}</div>
-              <div className="project-main">
-                <div className="project-header">
-                  <h3>{project.title}</h3>
-
-                  <span
-                    className={`project-badge ${
-                      project.isLive
-                        ? "badge-live"
-                        : project.status === t.development
-                          ? "badge-development"
-                          : project.status === t.study
-                            ? "badge-study"
-                            : "badge-archived"
-                    }`}
+        {[
+          { key: "personal", label: t.catPersonal },
+          { key: "freelance", label: t.catFreelance },
+          { key: "study", label: t.catStudy },
+        ].map(({ key, label }) => {
+          const group = projectsData.filter((p) => p.category === key);
+          if (group.length === 0) return null;
+          return (
+            <div key={key} className="projects-group">
+              <div className="projects-group-label">{label}</div>
+              <div className="projects-list">
+                {group.map((project) => (
+                  <div
+                    className={`project-row ${project.link ? "clickable" : ""}`}
+                    key={project.id}
+                    onClick={() => {
+                      if (project.link) {
+                        window.open(project.link, "_blank");
+                      }
+                    }}
                   >
-                    {project.status}
-                  </span>
-                  <svg
-                    className="project-link-icon"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M14 5H19V10M19 5L10 14"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M19 14V19H5V5H10"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <p className="project-desc">{t[project.descKey]}</p>
-                <div className="project-stack">{project.stack}</div>
+                    <div className="project-num-col">{project.num}</div>
+                    <div className="project-main">
+                      <div className="project-header">
+                        <h3>{project.title}</h3>
+                        <span
+                          className={`project-badge ${
+                            project.isLive
+                              ? "badge-live"
+                              : project.status === t.development
+                                ? "badge-development"
+                                : project.status === t.study
+                                  ? "badge-study"
+                                  : "badge-archived"
+                          }`}
+                        >
+                          {project.status}
+                        </span>
+                        <svg
+                          className="project-link-icon"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M14 5H19V10M19 5L10 14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M19 14V19H5V5H10"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <p className="project-desc">{t[project.descKey]}</p>
+                      <div className="project-stack">{project.stack}</div>
+                    </div>
+                    <div className="carousel-col">{renderCarousel(project)}</div>
+                  </div>
+                ))}
               </div>
-              <div className="carousel-col">{renderCarousel(project)}</div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
       <div className="divider"></div>
@@ -610,6 +683,54 @@ const Portfolio = () => {
           <span className="footer-dot"></span>Luis Gomes · Fullstack Developer
         </p>
       </footer>
+
+      {lightbox && (
+        <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
+          <button className="lightbox-close" onClick={() => setLightbox(null)}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+
+          {lightbox.slides.length > 1 && (
+            <button
+              className="lightbox-nav prev"
+              onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length })); }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          )}
+
+          <img
+            src={lightbox.slides[lightbox.idx]}
+            className="lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {lightbox.slides.length > 1 && (
+            <button
+              className="lightbox-nav next"
+              onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: (prev.idx + 1) % prev.slides.length })); }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          )}
+
+          <div className="lightbox-dots">
+            {lightbox.slides.map((_, i) => (
+              <button
+                key={i}
+                className={`lightbox-dot ${i === lightbox.idx ? "active" : ""}`}
+                onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: i })); }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
