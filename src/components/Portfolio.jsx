@@ -25,6 +25,12 @@ import hellos2 from "../assets/hellos/img2.png";
 import hellos3 from "../assets/hellos/img3.png";
 import hellos4 from "../assets/hellos/img4.png";
 
+import sagyou1 from "../assets/sagyou/img1.png";
+import sagyou2 from "../assets/sagyou/img2.png";
+import sagyou3 from "../assets/sagyou/img3.png";
+import sagyou4 from "../assets/sagyou/img4.png";
+import sagyou5 from "../assets/sagyou/img5.png";
+
 export const i18nJson = {
   pt: {
     tag: "Fullstack Developer",
@@ -50,6 +56,8 @@ export const i18nJson = {
     pdesc6: "Projeto de estudo sobre microsserviços com Kafka",
     pdesc7:
       "Sistema desktop de gestão hoteleira com módulos de reservas, quartos, hóspedes, relatórios e auditoria",
+    pdesc8:
+      "Kanban pessoal offline com hábitos, metas, lista de compras, canvas e importação via IA",
     arch: "Arquivado",
     development: "Desenvolvimento",
     study: "Para Estudo",
@@ -84,6 +92,8 @@ export const i18nJson = {
     pdesc6: "Study project on microservices with Kafka",
     pdesc7:
       "Desktop hotel management system with modules for reservations, rooms, guests, reports and audit",
+    pdesc8:
+      "Offline personal kanban with habits, goals, shopping list, canvas and AI-assisted import",
     arch: "Archived",
     development: "Development",
     study: "For study",
@@ -118,6 +128,8 @@ export const i18nJson = {
     pdesc6: "Kafkaを使ったマイクロサービスの学習プロジェクト",
     pdesc7:
       "予約・客室・宿泊客・レポート・監査モジュールを備えたデスクトップホテル管理システム",
+    pdesc8:
+      "習慣、目標、買い物リスト、キャンバス、AIによるインポート機能を備えたオフライン個人用かんばん",
     arch: "アーカイブ済み",
     development: "発達",
     study: "学習用",
@@ -134,7 +146,7 @@ export const i18nJson = {
 const Portfolio = () => {
   const [lang, setLang] = useState("pt");
   const [isHovered, setIsHovered] = useState(false);
-  const [carousels, setCarousels] = useState({ car1: 0, car2: 0, car3: 0, car4: 0 });
+  const [carousels, setCarousels] = useState({});
   const [menuOpen, setMenuOpen] = useState(false);
   const [lightbox, setLightbox] = useState(null);
 
@@ -142,8 +154,16 @@ const Portfolio = () => {
     if (!lightbox) return;
     const onKey = (e) => {
       if (e.key === "Escape") setLightbox(null);
-      if (e.key === "ArrowRight") setLightbox((prev) => ({ ...prev, idx: (prev.idx + 1) % prev.slides.length }));
-      if (e.key === "ArrowLeft")  setLightbox((prev) => ({ ...prev, idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length }));
+      if (e.key === "ArrowRight")
+        setLightbox((prev) => ({
+          ...prev,
+          idx: (prev.idx + 1) % prev.slides.length,
+        }));
+      if (e.key === "ArrowLeft")
+        setLightbox((prev) => ({
+          ...prev,
+          idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length,
+        }));
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -166,8 +186,21 @@ const Portfolio = () => {
       link: "https://murasakilanguages.com/",
     },
     {
-      id: "car2",
+      id: "car7",
       num: "02",
+      title: "Sagyou",
+      status: "Live",
+      isLive: true,
+      category: "personal",
+      descKey: "pdesc8",
+      stack:
+        "Electron · React · TypeScript · Zustand · dnd kit · Tailwind CSS · Vitest",
+      slides: [sagyou1, sagyou2, sagyou3, sagyou4, sagyou5],
+      link: "https://github.com/luisgomes2002/Sagyou",
+    },
+    {
+      id: "car2",
+      num: "03",
       title: "Hotel Ellus",
       status: "Live",
       isLive: true,
@@ -180,7 +213,7 @@ const Portfolio = () => {
     },
     {
       id: "car3",
-      num: "03",
+      num: "04",
       title: "Trifase",
       status: "Live",
       isLive: true,
@@ -192,7 +225,7 @@ const Portfolio = () => {
     },
     {
       id: "car4",
-      num: "04",
+      num: "05",
       title: "Murasaki Languages Prototype",
       status: t.arch,
       isLive: false,
@@ -205,7 +238,7 @@ const Portfolio = () => {
     },
     {
       id: "car5",
-      num: "05",
+      num: "06",
       title: "health-manager-backend",
       status: t.development,
       isLive: false,
@@ -217,7 +250,7 @@ const Portfolio = () => {
     },
     {
       id: "car6",
-      num: "06",
+      num: "07",
       title: "Microsservices-Email-RabbitMQ",
       status: t.study,
       isLive: false,
@@ -244,13 +277,15 @@ const Portfolio = () => {
   useEffect(() => {
     if (isHovered) return;
     const autoId = setInterval(() => {
-      setCarousels((prev) => ({
-        ...prev,
-        car1: (prev.car1 + 1) % projectsData[0].slides.length,
-        car2: (prev.car2 + 1) % projectsData[1].slides.length,
-        car3: (prev.car3 + 1) % projectsData[2].slides.length,
-        car4: (prev.car4 + 1) % projectsData[3].slides.length,
-      }));
+      setCarousels((prev) => {
+        const next = { ...prev };
+        for (const project of projectsData) {
+          if (project.slides.length > 0) {
+            next[project.id] = ((prev[project.id] ?? 0) + 1) % project.slides.length;
+          }
+        }
+        return next;
+      });
     }, 3000);
     return () => clearInterval(autoId);
   }, [isHovered]);
@@ -258,7 +293,7 @@ const Portfolio = () => {
   const handleCarMove = (id, dir, count) => {
     setCarousels((prev) => ({
       ...prev,
-      [id]: (prev[id] + dir + count) % count,
+      [id]: ((prev[id] ?? 0) + dir + count) % count,
     }));
   };
 
@@ -267,7 +302,7 @@ const Portfolio = () => {
   };
 
   const renderCarousel = (project) => {
-    const currentIdx = carousels[project.id];
+    const currentIdx = carousels[project.id] ?? 0;
     const count = project.slides.length;
 
     return (
@@ -286,7 +321,10 @@ const Portfolio = () => {
                 src={slide}
                 alt={`slide-${i}`}
                 className="carousel-image"
-                onClick={(e) => { e.stopPropagation(); setLightbox({ slides: project.slides, idx: i }); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightbox({ slides: project.slides, idx: i });
+                }}
               />
             </div>
           ))}
@@ -580,7 +618,9 @@ const Portfolio = () => {
                       <p className="project-desc">{t[project.descKey]}</p>
                       <div className="project-stack">{project.stack}</div>
                     </div>
-                    <div className="carousel-col">{renderCarousel(project)}</div>
+                    <div className="carousel-col">
+                      {renderCarousel(project)}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -688,17 +728,34 @@ const Portfolio = () => {
         <div className="lightbox-overlay" onClick={() => setLightbox(null)}>
           <button className="lightbox-close" onClick={() => setLightbox(null)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
 
           {lightbox.slides.length > 1 && (
             <button
               className="lightbox-nav prev"
-              onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length })); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((prev) => ({
+                  ...prev,
+                  idx: (prev.idx - 1 + prev.slides.length) % prev.slides.length,
+                }));
+              }}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M15 6L9 12L15 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
@@ -712,10 +769,22 @@ const Portfolio = () => {
           {lightbox.slides.length > 1 && (
             <button
               className="lightbox-nav next"
-              onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: (prev.idx + 1) % prev.slides.length })); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightbox((prev) => ({
+                  ...prev,
+                  idx: (prev.idx + 1) % prev.slides.length,
+                }));
+              }}
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M9 6L15 12L9 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
@@ -725,7 +794,10 @@ const Portfolio = () => {
               <button
                 key={i}
                 className={`lightbox-dot ${i === lightbox.idx ? "active" : ""}`}
-                onClick={(e) => { e.stopPropagation(); setLightbox((prev) => ({ ...prev, idx: i })); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightbox((prev) => ({ ...prev, idx: i }));
+                }}
               />
             ))}
           </div>
