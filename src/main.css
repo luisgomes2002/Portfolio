@@ -2,7 +2,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans JP", sans-serif;
-  font-optical-sizing: auto;
+}
+
+html {
   scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
 }
