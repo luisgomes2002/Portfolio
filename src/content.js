@@ -90,7 +90,6 @@ const projectList = [
   {
     id: "hotel-ellus",
     assets: "hellos",
-    cover: "img2.png",
     title: "Hotel Ellus",
     category: "freelance",
     status: "live",
