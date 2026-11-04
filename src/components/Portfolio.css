@@ -398,6 +398,11 @@ a {
   justify-content: flex-end;
   gap: 8px;
 }
+/* Ao filtrar, os projetos abaixo mudam de altura; sem isto o Chrome ajusta a
+   rolagem para "segurar" um card e o menu aberto pula junto. */
+#projects {
+  overflow-anchor: none;
+}
 .filter-menu {
   position: relative;
 }
@@ -465,6 +470,7 @@ a {
   color: var(--ink-3);
 }
 .filter-option {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -482,10 +488,16 @@ a {
 .filter-option.is-checked {
   color: var(--ink);
 }
+/* A caixa nativa fica sobre a própria linha (invisível): o foco não rola a
+   página nem a lista para outro lugar. */
 .filter-option input {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
 }
 .filter-check {
   display: grid;
