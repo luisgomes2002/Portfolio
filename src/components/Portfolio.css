@@ -718,17 +718,6 @@ a {
   color: var(--ink-2);
   font-weight: 500;
 }
-.type-tag.is-compact {
-  height: 24px;
-  gap: 6px;
-  padding: 0 10px 0 8px;
-  border-color: var(--line);
-  background: var(--paper);
-  font-size: 13px;
-}
-.type-tag.is-compact .type-extra {
-  padding-left: 6px;
-}
 .case-thumbs {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1072,12 +1061,6 @@ a {
     padding-bottom: 6px;
     border-radius: var(--r-md);
     white-space: normal;
-  }
-  .type-tag.is-compact {
-    min-height: 24px;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-radius: 999px;
   }
   .case-wide {
     grid-template-columns: 1fr;

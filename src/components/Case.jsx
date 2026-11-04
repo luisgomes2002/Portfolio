@@ -29,13 +29,13 @@ export const PlatformIcon = ({ platform, size }) => {
 };
 
 // Tipo do projeto bem à vista: ícone + categoria + empresa ou tamanho da equipe
-// + onde ele roda. Na versão compacta (barra da moldura) as plataformas ficam de fora.
-export const TypeTag = ({ project, t, compact = false }) => {
+// + onde ele roda.
+export const TypeTag = ({ project, t }) => {
   const extra = project.org ?? (project.team && t.teamOf.replace("{n}", project.team));
-  const platforms = compact ? [] : project.platforms ?? [];
+  const platforms = project.platforms ?? [];
   return (
-    <span className={`type-tag type-${project.category} ${compact ? "is-compact" : ""}`}>
-      <TypeIcon category={project.category} size={compact ? 14 : 16} />
+    <span className={`type-tag type-${project.category}`}>
+      <TypeIcon category={project.category} size={16} />
       <strong>{t[catKey(project.category)]}</strong>
       {extra && <span className="type-extra">{extra}</span>}
       {platforms.length > 0 && (
@@ -127,7 +127,6 @@ const Frame = ({ project, t, onOpen }) => {
           <span />
           <span />
         </span>
-        <TypeTag project={project} t={t} compact />
       </div>
       {src ? (
         <button
