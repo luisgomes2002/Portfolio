@@ -16,8 +16,9 @@ import {
   techUsage,
 } from "../content";
 import Case, { TypeIcon } from "./Case";
+import FilterMenu from "./FilterMenu";
 import ProjectModal from "./ProjectModal";
-import { ArrowDown, ArrowUpRight, ChevronDown, GitHub } from "./Icons";
+import { ArrowDown, ArrowUpRight, GitHub } from "./Icons";
 
 const LANGS = ["pt", "en", "jp"];
 const HTML_LANG = { pt: "pt-BR", en: "en", jp: "ja" };
@@ -34,21 +35,11 @@ const readLang = () => {
 // Número fixo por projeto, na ordem de `projects`.
 const numbered = projects.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, "0") }));
 const filterOptions = categories.filter((c) => projects.some((p) => p.category === c));
-const usesTech = (name) => (p) => !name || p.tech.includes(name);
-const runsOn = (platform) => (p) => !platform || p.platforms?.includes(platform);
-const platformOptions = platforms.filter((pl) => projects.some(runsOn(pl)));
-
-// Seletor compacto no estilo do botão secundário: rótulo + valor.
-const FilterSelect = ({ label, value, onChange, anyLabel, children }) => (
-  <label className={`filter-select ${value ? "is-active" : ""}`}>
-    <span className="filter-select-label">{label}</span>
-    <select value={value ?? ""} onChange={(e) => onChange(e.target.value || null)}>
-      <option value="">{anyLabel}</option>
-      {children}
-    </select>
-    <ChevronDown size={16} />
-  </label>
-);
+// Dentro de um mesmo filtro as escolhas somam (basta uma bater); filtros
+// diferentes se combinam entre si. Lista vazia = sem filtro.
+const usesTech = (names) => (p) => names.length === 0 || names.some((n) => p.tech.includes(n));
+const runsOn = (list) => (p) => list.length === 0 || list.some((pl) => p.platforms?.includes(pl));
+const platformOptions = platforms.filter((pl) => projects.some(runsOn([pl])));
 
 // Título com uma palavra em vermelhão.
 const Marked = ({ pre, hl, post }) => (
@@ -74,9 +65,9 @@ const NoteArrow = ({ className }) => (
 
 const Portfolio = () => {
   const [lang, setLang] = useState(readLang);
-  const [filter, setFilter] = useState("all");
-  const [techFilter, setTechFilter] = useState(null);
-  const [platformFilter, setPlatformFilter] = useState(null);
+  const [cats, setCats] = useState([]);
+  const [techFilter, setTechFilter] = useState([]);
+  const [platformFilter, setPlatformFilter] = useState([]);
   const [opened, setOpened] = useState(null);
 
   const t = i18nJson[lang];
@@ -90,14 +81,16 @@ const Portfolio = () => {
     }
   }, [lang]);
 
-  // Em "Todos": destaques largos no topo e, abaixo, todos os projetos agrupados
-  // por tipo (os destaques se repetem no grupo). Com filtro: só o grupo escolhido.
-  // O filtro de tecnologia se combina com o de tipo.
+  // Sem filtro: destaques largos no topo e, abaixo, todos os projetos agrupados
+  // por tipo. Com qualquer filtro ativo os destaques somem (já aparecem no grupo).
   const visible = numbered.filter(usesTech(techFilter)).filter(runsOn(platformFilter));
   const countOf = (c) =>
     c === "all" ? visible.length : visible.filter((p) => p.category === c).length;
-  const wide = filter === "all" ? visible.filter((p) => p.featured) : [];
-  const groups = (filter === "all" ? filterOptions : [filter])
+  const filtering = cats.length > 0 || techFilter.length > 0 || platformFilter.length > 0;
+  const wide = filtering ? [] : visible.filter((p) => p.featured);
+  const toggleCat = (c) =>
+    setCats((cur) => (cur.includes(c) ? cur.filter((x) => x !== c) : [...cur, c]));
+  const groups = (cats.length ? filterOptions.filter((c) => cats.includes(c)) : filterOptions)
     .map((c) => ({
       category: c,
       items: visible.filter((p) => p.category === c),
@@ -188,52 +181,56 @@ const Portfolio = () => {
               </h2>
               <div className="filter-rows">
                 <div className="filters" role="group" aria-label={t.filterCategory}>
-                  {["all", ...filterOptions].map((c) => (
+                  {["all", ...filterOptions].map((c) => {
+                    const active = c === "all" ? cats.length === 0 : cats.includes(c);
+                    return (
                     <button
                       key={c}
                       type="button"
-                      className={filter === c ? "is-active" : ""}
-                      aria-pressed={filter === c}
-                      onClick={() => setFilter(c)}
+                      className={active ? "is-active" : ""}
+                      aria-pressed={active}
+                      onClick={() => (c === "all" ? setCats([]) : toggleCat(c))}
                     >
                       {c !== "all" && <TypeIcon category={c} size={15} />}
                       {c === "all" ? t.filterAll : t[catKey(c)]}
                       <span className="filter-count">{countOf(c)}</span>
                     </button>
-                  ))}
+                    );
+                  })}
                 </div>
                 <div className="filter-selects">
-                  <FilterSelect
+                  <FilterMenu
                     label={t.filterPlatform}
-                    value={platformFilter}
+                    t={t}
+                    selected={platformFilter}
                     onChange={setPlatformFilter}
-                    anyLabel={t.filterAny}
-                  >
-                    {platformOptions.map((pl) => (
-                      <option key={pl} value={pl}>
-                        {t[platformKey(pl)]} ({numbered.filter(runsOn(pl)).length})
-                      </option>
-                    ))}
-                  </FilterSelect>
-                  <FilterSelect
+                    groups={[
+                      {
+                        options: platformOptions.map((pl) => ({
+                          value: pl,
+                          label: t[platformKey(pl)],
+                          count: numbered.filter(runsOn([pl])).length,
+                        })),
+                      },
+                    ]}
+                  />
+                  <FilterMenu
                     label={t.filterTech}
-                    value={techFilter}
+                    t={t}
+                    selected={techFilter}
                     onChange={setTechFilter}
-                    anyLabel={t.filterAny}
-                  >
-                    {[
+                    groups={[
                       [t.filterLanguage, languageOptions],
                       [t.filterTech, techOptions],
-                    ].map(([group, options]) => (
-                      <optgroup key={group} label={group}>
-                        {options.map((name) => (
-                          <option key={name} value={name}>
-                            {name} ({techUsage[name]})
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </FilterSelect>
+                    ].map(([group, options]) => ({
+                      label: group,
+                      options: options.map((name) => ({
+                        value: name,
+                        label: name,
+                        count: techUsage[name],
+                      })),
+                    }))}
+                  />
                 </div>
               </div>
             </div>

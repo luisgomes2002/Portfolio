@@ -26,6 +26,12 @@ export const ChevronLeft = ({ size = 20 }) => (
   </svg>
 );
 
+export const Check = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...base} strokeWidth={3}>
+    <path d="M5 12.5L10 17.5L19 7" />
+  </svg>
+);
+
 export const ChevronDown = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
     <path d="M6 9L12 15L18 9" />
