@@ -35,19 +35,21 @@ const PLATFORM_ICONS = {
   extension: Puzzle,
 };
 
+export const PlatformIcon = ({ platform, size }) => {
+  const Icon = PLATFORM_ICONS[platform];
+  return <Icon size={size} />;
+};
+
 export const PlatformTags = ({ project, t }) => {
   if (!project.platforms?.length) return null;
   return (
     <ul className="case-platforms" aria-label={t.platformsLabel}>
-      {project.platforms.map((p) => {
-        const Icon = PLATFORM_ICONS[p];
-        return (
-          <li key={p} className="platform-tag">
-            <Icon size={13} />
-            {t[platformKey(p)]}
-          </li>
-        );
-      })}
+      {project.platforms.map((p) => (
+        <li key={p} className={`platform-tag plat-${p}`}>
+          <PlatformIcon platform={p} size={16} />
+          {t[platformKey(p)]}
+        </li>
+      ))}
     </ul>
   );
 };
@@ -97,6 +99,7 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
     <div className="case-top">
       <span className="case-num">{num}</span>
       <TypeTag project={project} t={t} />
+      <PlatformTags project={project} t={t} />
     </div>
     <Tag className="case-title" id={id}>
       {projectTitle(project, t)}
@@ -107,7 +110,6 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
         {t[statusKey(project.status)]}
       </span>
     </p>
-    <PlatformTags project={project} t={t} />
   </div>
 );
 

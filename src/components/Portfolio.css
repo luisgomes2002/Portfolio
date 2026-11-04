@@ -668,28 +668,45 @@ a {
 .status-study { color: var(--info); }
 .status-study::before { background: var(--info); }
 
+/* Cores por plataforma (tags dos cards e filtro). */
+.plat-web       { --plat: #1f5f8b; }
+.plat-desktop   { --plat: #4a4f8c; }
+.plat-mobile    { --plat: #2e6b4a; }
+.plat-extension { --plat: #9a4d12; }
+
 .case-platforms {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
+  gap: 8px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 .platform-tag {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  height: 24px;
-  padding: 0 9px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  background: var(--paper-2);
-  color: var(--ink-2);
-  font-size: 13px;
-  font-weight: 500;
+  gap: 7px;
+  height: 34px;
+  padding: 0 14px 0 11px;
+  border-radius: 999px;
+  background: var(--plat);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
+}
+.filters-tech button[class*="plat-"] svg {
+  color: var(--plat);
+}
+.filters-tech button[class*="plat-"].is-active {
+  background: var(--plat);
+  border-color: var(--plat);
+  color: #fff;
+}
+.filters-tech button[class*="plat-"].is-active svg,
+.filters-tech button[class*="plat-"].is-active .filter-count {
+  color: #fff;
 }
 
 .case-desc {

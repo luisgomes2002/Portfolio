@@ -7,13 +7,15 @@ import {
   i18nJson,
   languageOptions,
   links,
+  platformKey,
+  platforms,
   projects,
   resumes,
   skillGroups,
   techKind,
   techOptions,
 } from "../content";
-import Case, { TypeIcon } from "./Case";
+import Case, { PlatformIcon, TypeIcon } from "./Case";
 import ProjectModal from "./ProjectModal";
 import { ArrowDown, ArrowUpRight, GitHub } from "./Icons";
 
@@ -33,6 +35,8 @@ const readLang = () => {
 const numbered = projects.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, "0") }));
 const filterOptions = categories.filter((c) => projects.some((p) => p.category === c));
 const usesTech = (name) => (p) => !name || p.tech.includes(name);
+const runsOn = (platform) => (p) => !platform || p.platforms?.includes(platform);
+const platformOptions = platforms.filter((pl) => projects.some(runsOn(pl)));
 
 // Título com uma palavra em vermelhão.
 const Marked = ({ pre, hl, post }) => (
@@ -60,6 +64,7 @@ const Portfolio = () => {
   const [lang, setLang] = useState(readLang);
   const [filter, setFilter] = useState("all");
   const [techFilter, setTechFilter] = useState(null);
+  const [platformFilter, setPlatformFilter] = useState(null);
   const [opened, setOpened] = useState(null);
 
   const t = i18nJson[lang];
@@ -76,7 +81,7 @@ const Portfolio = () => {
   // Em "Todos": destaques largos no topo e, abaixo, todos os projetos agrupados
   // por tipo (os destaques se repetem no grupo). Com filtro: só o grupo escolhido.
   // O filtro de tecnologia se combina com o de tipo.
-  const visible = numbered.filter(usesTech(techFilter));
+  const visible = numbered.filter(usesTech(techFilter)).filter(runsOn(platformFilter));
   const countOf = (c) =>
     c === "all" ? visible.length : visible.filter((p) => p.category === c).length;
   const wide = filter === "all" ? visible.filter((p) => p.featured) : [];
@@ -182,6 +187,22 @@ const Portfolio = () => {
                       {c !== "all" && <TypeIcon category={c} size={15} />}
                       {c === "all" ? t.filterAll : t[catKey(c)]}
                       <span className="filter-count">{countOf(c)}</span>
+                    </button>
+                  ))}
+                </div>
+                <div className="filters filters-tech" role="group" aria-label={t.filterPlatform}>
+                  <span className="filters-label">{t.filterPlatform}</span>
+                  {platformOptions.map((pl) => (
+                    <button
+                      key={pl}
+                      type="button"
+                      className={`plat-${pl} ${platformFilter === pl ? "is-active" : ""}`}
+                      aria-pressed={platformFilter === pl}
+                      onClick={() => setPlatformFilter((cur) => (cur === pl ? null : pl))}
+                    >
+                      <PlatformIcon platform={pl} size={15} />
+                      {t[platformKey(pl)]}
+                      <span className="filter-count">{numbered.filter(runsOn(pl)).length}</span>
                     </button>
                   ))}
                 </div>

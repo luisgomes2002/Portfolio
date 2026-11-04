@@ -17,6 +17,7 @@ export const categories = ["work", "personal", "group", "freelance", "study"];
 
 // Onde o projeto roda; cada uma vira uma tag no card.
 export const platformKey = (p) => `plat${p[0].toUpperCase()}${p.slice(1)}`;
+export const platforms = ["web", "desktop", "mobile", "extension"];
 
 // Título traduzível para projetos ainda sem nome próprio.
 export const projectTitle = (p, t) => (p.titleKey ? t[p.titleKey] : p.title);
@@ -420,6 +421,7 @@ export const i18nJson = {
     platMobile: "Mobile",
     platExtension: "Extensão do Chrome",
     platformsLabel: "Plataformas",
+    filterPlatform: "Plataforma",
     techLabel: "Principais tecnologias",
     filterTech: "Tecnologia",
     filterLanguage: "Linguagem",
@@ -521,6 +523,7 @@ export const i18nJson = {
     platMobile: "Mobile",
     platExtension: "Chrome extension",
     platformsLabel: "Platforms",
+    filterPlatform: "Platform",
     techLabel: "Main technologies",
     filterTech: "Technology",
     filterLanguage: "Language",
@@ -622,6 +625,7 @@ export const i18nJson = {
     platMobile: "モバイル",
     platExtension: "Chrome拡張機能",
     platformsLabel: "プラットフォーム",
+    filterPlatform: "プラットフォーム",
     techLabel: "主な技術",
     filterTech: "技術",
     filterLanguage: "言語",
