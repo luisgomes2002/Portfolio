@@ -12,12 +12,12 @@ import {
   projects,
   resumes,
   skillGroups,
-  techKind,
   techOptions,
+  techUsage,
 } from "../content";
-import Case, { PlatformIcon, TypeIcon } from "./Case";
+import Case, { TypeIcon } from "./Case";
 import ProjectModal from "./ProjectModal";
-import { ArrowDown, ArrowUpRight, GitHub } from "./Icons";
+import { ArrowDown, ArrowUpRight, ChevronDown, GitHub } from "./Icons";
 
 const LANGS = ["pt", "en", "jp"];
 const HTML_LANG = { pt: "pt-BR", en: "en", jp: "ja" };
@@ -37,6 +37,18 @@ const filterOptions = categories.filter((c) => projects.some((p) => p.category =
 const usesTech = (name) => (p) => !name || p.tech.includes(name);
 const runsOn = (platform) => (p) => !platform || p.platforms?.includes(platform);
 const platformOptions = platforms.filter((pl) => projects.some(runsOn(pl)));
+
+// Seletor compacto no estilo do botão secundário: rótulo + valor.
+const FilterSelect = ({ label, value, onChange, anyLabel, children }) => (
+  <label className={`filter-select ${value ? "is-active" : ""}`}>
+    <span className="filter-select-label">{label}</span>
+    <select value={value ?? ""} onChange={(e) => onChange(e.target.value || null)}>
+      <option value="">{anyLabel}</option>
+      {children}
+    </select>
+    <ChevronDown size={16} />
+  </label>
+);
 
 // Título com uma palavra em vermelhão.
 const Marked = ({ pre, hl, post }) => (
@@ -190,43 +202,39 @@ const Portfolio = () => {
                     </button>
                   ))}
                 </div>
-                <div className="filters filters-tech" role="group" aria-label={t.filterPlatform}>
-                  <span className="filters-label">{t.filterPlatform}</span>
-                  {platformOptions.map((pl) => (
-                    <button
-                      key={pl}
-                      type="button"
-                      className={`plat-${pl} ${platformFilter === pl ? "is-active" : ""}`}
-                      aria-pressed={platformFilter === pl}
-                      onClick={() => setPlatformFilter((cur) => (cur === pl ? null : pl))}
-                    >
-                      <PlatformIcon platform={pl} size={15} />
-                      {t[platformKey(pl)]}
-                      <span className="filter-count">{numbered.filter(runsOn(pl)).length}</span>
-                    </button>
-                  ))}
-                </div>
-                {[
-                  [t.filterLanguage, languageOptions],
-                  [t.filterTech, techOptions],
-                ].map(([label, options]) => (
-                  <div key={label} className="filters filters-tech" role="group" aria-label={label}>
-                    <span className="filters-label">{label}</span>
-                    {options.map((name) => (
-                      <button
-                        key={name}
-                        type="button"
-                        className={`kind-${techKind(name)} ${techFilter === name ? "is-active" : ""}`}
-                        aria-pressed={techFilter === name}
-                        onClick={() => setTechFilter((cur) => (cur === name ? null : name))}
-                      >
-                        <span className="kind-dot" aria-hidden />
-                        {name}
-                        <span className="filter-count">{numbered.filter(usesTech(name)).length}</span>
-                      </button>
+                <div className="filter-selects">
+                  <FilterSelect
+                    label={t.filterPlatform}
+                    value={platformFilter}
+                    onChange={setPlatformFilter}
+                    anyLabel={t.filterAny}
+                  >
+                    {platformOptions.map((pl) => (
+                      <option key={pl} value={pl}>
+                        {t[platformKey(pl)]} ({numbered.filter(runsOn(pl)).length})
+                      </option>
                     ))}
-                  </div>
-                ))}
+                  </FilterSelect>
+                  <FilterSelect
+                    label={t.filterTech}
+                    value={techFilter}
+                    onChange={setTechFilter}
+                    anyLabel={t.filterAny}
+                  >
+                    {[
+                      [t.filterLanguage, languageOptions],
+                      [t.filterTech, techOptions],
+                    ].map(([group, options]) => (
+                      <optgroup key={group} label={group}>
+                        {options.map((name) => (
+                          <option key={name} value={name}>
+                            {name} ({techUsage[name]})
+                          </option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </FilterSelect>
+                </div>
               </div>
             </div>
 

@@ -292,19 +292,9 @@ export const projects = projectList.map((p) => ({
   slides: slidesFor(p.assets ?? p.id, p.cover),
 }));
 
-// Tipo de cada tecnologia em destaque; o tipo define a cor da tag.
-const TECH_KINDS = {
-  lang: ["TypeScript", "JavaScript", "Java", "C++", "C#", "Python"],
-  front: ["React", "Next.js", "Tailwind CSS"],
-  app: ["React Native", "Expo", "Electron", "Unity", "Chrome Extension"],
-  back: ["Spring Boot", "Spring AI", "NestJS", "Node.js", "Express", "Fastify", "Prisma", "gRPC"],
-  data: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Supabase"],
-  infra: ["Docker", "Kafka", "RabbitMQ", "Cloudflare Workers", "OpenSSL", "CMake"],
-};
-const kindByTech = Object.fromEntries(
-  Object.entries(TECH_KINDS).flatMap(([kind, names]) => names.map((n) => [n, kind])),
-);
-export const techKind = (name) => kindByTech[name] ?? "infra";
+// Linguagens aparecem primeiro e com mais peso na linha de stack.
+const LANGUAGES = ["TypeScript", "JavaScript", "Java", "C++", "C#", "Python"];
+export const isLanguage = (name) => LANGUAGES.includes(name);
 
 // Opções do filtro, das mais usadas para as menos usadas: todas as linguagens
 // e as demais tecnologias que aparecem em pelo menos dois projetos.
@@ -313,9 +303,10 @@ const usage = projects
   .reduce((acc, n) => ({ ...acc, [n]: (acc[n] ?? 0) + 1 }), {});
 const byUsage = (names) =>
   names.sort((a, b) => usage[b] - usage[a] || a.localeCompare(b));
-export const languageOptions = byUsage(Object.keys(usage).filter((n) => techKind(n) === "lang"));
+export const techUsage = usage;
+export const languageOptions = byUsage(Object.keys(usage).filter(isLanguage));
 export const techOptions = byUsage(
-  Object.keys(usage).filter((n) => techKind(n) !== "lang" && usage[n] >= 2),
+  Object.keys(usage).filter((n) => !isLanguage(n) && usage[n] >= 2),
 );
 
 export const skillGroups = [
@@ -422,7 +413,7 @@ export const i18nJson = {
     platExtension: "Extensão do Chrome",
     platformsLabel: "Plataformas",
     filterPlatform: "Plataforma",
-    techLabel: "Principais tecnologias",
+    filterAny: "Todas",
     filterTech: "Tecnologia",
     filterLanguage: "Linguagem",
     filterCategory: "Tipo",
@@ -524,7 +515,7 @@ export const i18nJson = {
     platExtension: "Chrome extension",
     platformsLabel: "Platforms",
     filterPlatform: "Platform",
-    techLabel: "Main technologies",
+    filterAny: "Any",
     filterTech: "Technology",
     filterLanguage: "Language",
     filterCategory: "Type",
@@ -626,7 +617,7 @@ export const i18nJson = {
     platExtension: "Chrome拡張機能",
     platformsLabel: "プラットフォーム",
     filterPlatform: "プラットフォーム",
-    techLabel: "主な技術",
+    filterAny: "すべて",
     filterTech: "技術",
     filterLanguage: "言語",
     filterCategory: "種類",

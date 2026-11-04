@@ -1,4 +1,4 @@
-import { catKey, platformKey, projectTitle, statusKey, techKind, yearsLabel } from "../content";
+import { catKey, isLanguage, platformKey, projectTitle, statusKey, yearsLabel } from "../content";
 import {
   ArrowUpRight, Book, Briefcase, FileCheck, Globe, Monitor, Puzzle, Smartphone, User, Users,
 } from "./Icons";
@@ -16,18 +16,6 @@ export const TypeIcon = ({ category, size }) => {
   return <Icon size={size} />;
 };
 
-// Tipo do projeto bem à vista: ícone + categoria + empresa ou tamanho da equipe.
-export const TypeTag = ({ project, t, compact = false }) => {
-  const extra = project.org ?? (project.team && t.teamOf.replace("{n}", project.team));
-  return (
-    <span className={`type-tag type-${project.category} ${compact ? "is-compact" : ""}`}>
-      <TypeIcon category={project.category} size={compact ? 14 : 16} />
-      <strong>{t[catKey(project.category)]}</strong>
-      {extra && <span className="type-extra">{extra}</span>}
-    </span>
-  );
-};
-
 const PLATFORM_ICONS = {
   web: Globe,
   desktop: Monitor,
@@ -40,17 +28,27 @@ export const PlatformIcon = ({ platform, size }) => {
   return <Icon size={size} />;
 };
 
-export const PlatformTags = ({ project, t }) => {
-  if (!project.platforms?.length) return null;
+// Tipo do projeto bem à vista: ícone + categoria + empresa ou tamanho da equipe
+// + onde ele roda. Na versão compacta (barra da moldura) as plataformas ficam de fora.
+export const TypeTag = ({ project, t, compact = false }) => {
+  const extra = project.org ?? (project.team && t.teamOf.replace("{n}", project.team));
+  const platforms = compact ? [] : project.platforms ?? [];
   return (
-    <ul className="case-platforms" aria-label={t.platformsLabel}>
-      {project.platforms.map((p) => (
-        <li key={p} className={`platform-tag plat-${p}`}>
-          <PlatformIcon platform={p} size={16} />
-          {t[platformKey(p)]}
-        </li>
-      ))}
-    </ul>
+    <span className={`type-tag type-${project.category} ${compact ? "is-compact" : ""}`}>
+      <TypeIcon category={project.category} size={compact ? 14 : 16} />
+      <strong>{t[catKey(project.category)]}</strong>
+      {extra && <span className="type-extra">{extra}</span>}
+      {platforms.length > 0 && (
+        <span className="type-extra type-platforms" aria-label={t.platformsLabel}>
+          {platforms.map((p) => (
+            <span key={p} className="type-platform">
+              <PlatformIcon platform={p} size={15} />
+              {t[platformKey(p)]}
+            </span>
+          ))}
+        </span>
+      )}
+    </span>
   );
 };
 
@@ -72,24 +70,30 @@ export const CaseLinks = ({ project, t }) => (
   </p>
 );
 
-// Linguagens e tecnologias principais em tags coloridas por tipo; o restante
-// da stack vem logo abaixo, em texto.
-export const TechTags = ({ project, t }) => (
-  <ul className="case-tech" aria-label={t.techLabel}>
-    {project.tech.map((name) => (
-      <li key={name} className={`tech-tag kind-${techKind(name)}`}>
-        {name}
-      </li>
-    ))}
-  </ul>
-);
+// Stack em uma linha de texto, com peso decrescente: linguagens, tecnologias
+// principais e o restante.
+export const StackLine = ({ project }) => {
+  const items = [
+    ...project.tech.map((name) => ({ name, cls: isLanguage(name) ? "stack-lang" : "stack-main" })),
+    ...project.stack.map((name) => ({ name, cls: "" })),
+  ];
+  return (
+    <p className="case-stack">
+      {items.map(({ name, cls }, i) => (
+        <span key={name}>
+          {cls ? <strong className={cls}>{name}</strong> : name}
+          {i < items.length - 1 && ", "}
+        </span>
+      ))}
+    </p>
+  );
+};
 
 export const CaseDetails = ({ project, t }) => (
   <>
     <p className="case-desc">{t[project.descKey]}</p>
     {project.roleKey && <p className="case-role">{t[project.roleKey]}</p>}
-    <TechTags project={project} t={t} />
-    {project.stack.length > 0 && <p className="case-stack">{project.stack.join(", ")}</p>}
+    <StackLine project={project} />
     <CaseLinks project={project} t={t} />
   </>
 );
@@ -99,7 +103,6 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
     <div className="case-top">
       <span className="case-num">{num}</span>
       <TypeTag project={project} t={t} />
-      <PlatformTags project={project} t={t} />
     </div>
     <Tag className="case-title" id={id}>
       {projectTitle(project, t)}
