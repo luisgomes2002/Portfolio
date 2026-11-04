@@ -101,3 +101,30 @@ export const Book = ({ size = 16 }) => (
     <path d="M4 19V5M19 19v2H6" />
   </svg>
 );
+
+export const Globe = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12H21M12 3C14.5 5.5 15.5 8.5 15.5 12S14.5 18.5 12 21C9.5 18.5 8.5 15.5 8.5 12S9.5 5.5 12 3Z" />
+  </svg>
+);
+
+export const Monitor = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+    <rect x="3" y="4" width="18" height="12" rx="2" />
+    <path d="M8 20H16M12 16V20" />
+  </svg>
+);
+
+export const Smartphone = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+    <rect x="7" y="2" width="10" height="20" rx="2" />
+    <path d="M11 18H13" />
+  </svg>
+);
+
+export const Puzzle = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+    <path d="M10 4a2 2 0 1 1 4 0v2h4a1 1 0 0 1 1 1v4h-2a2 2 0 1 0 0 4h2v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4h2a2 2 0 1 0 0-4H5V7a1 1 0 0 1 1-1h4Z" />
+  </svg>
+);

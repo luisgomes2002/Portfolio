@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { projectTitle } from "../content";
 import { CaseDetails, CaseHeading } from "./Case";
 import { ChevronLeft, ChevronRight, Close } from "./Icons";
 
@@ -59,7 +60,7 @@ const ProjectModal = ({ project, num, startIdx = 0, t, onClose }) => {
         </div>
 
         <div className="modal-stage">
-          <img src={project.slides[idx]} alt={`${project.title} — ${idx + 1}/${count}`} />
+          <img src={project.slides[idx]} alt={`${projectTitle(project, t)} — ${idx + 1}/${count}`} />
           {count > 1 && (
             <>
               <button
