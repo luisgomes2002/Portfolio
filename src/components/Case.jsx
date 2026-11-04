@@ -1,4 +1,4 @@
-import { catKey, platformKey, projectTitle, statusKey, yearsLabel } from "../content";
+import { catKey, isLanguage, platformKey, projectTitle, statusKey, yearsLabel } from "../content";
 import {
   ArrowUpRight, Book, Briefcase, FileCheck, Globe, Monitor, Puzzle, Smartphone, User, Users,
 } from "./Icons";
@@ -16,18 +16,6 @@ export const TypeIcon = ({ category, size }) => {
   return <Icon size={size} />;
 };
 
-// Tipo do projeto bem à vista: ícone + categoria + empresa ou tamanho da equipe.
-export const TypeTag = ({ project, t, compact = false }) => {
-  const extra = project.org ?? (project.team && t.teamOf.replace("{n}", project.team));
-  return (
-    <span className={`type-tag type-${project.category} ${compact ? "is-compact" : ""}`}>
-      <TypeIcon category={project.category} size={compact ? 14 : 16} />
-      <strong>{t[catKey(project.category)]}</strong>
-      {extra && <span className="type-extra">{extra}</span>}
-    </span>
-  );
-};
-
 const PLATFORM_ICONS = {
   web: Globe,
   desktop: Monitor,
@@ -35,20 +23,32 @@ const PLATFORM_ICONS = {
   extension: Puzzle,
 };
 
-export const PlatformTags = ({ project, t }) => {
-  if (!project.platforms?.length) return null;
+export const PlatformIcon = ({ platform, size }) => {
+  const Icon = PLATFORM_ICONS[platform];
+  return <Icon size={size} />;
+};
+
+// Tipo do projeto bem à vista: ícone + categoria + empresa ou tamanho da equipe
+// + onde ele roda.
+export const TypeTag = ({ project, t }) => {
+  const extra = project.org ?? (project.team && t.teamOf.replace("{n}", project.team));
+  const platforms = project.platforms ?? [];
   return (
-    <ul className="case-platforms" aria-label={t.platformsLabel}>
-      {project.platforms.map((p) => {
-        const Icon = PLATFORM_ICONS[p];
-        return (
-          <li key={p} className="platform-tag">
-            <Icon size={13} />
-            {t[platformKey(p)]}
-          </li>
-        );
-      })}
-    </ul>
+    <span className={`type-tag type-${project.category}`}>
+      <TypeIcon category={project.category} size={16} />
+      <strong>{t[catKey(project.category)]}</strong>
+      {extra && <span className="type-extra">{extra}</span>}
+      {platforms.length > 0 && (
+        <span className="type-extra type-platforms" aria-label={t.platformsLabel}>
+          {platforms.map((p) => (
+            <span key={p} className="type-platform">
+              <PlatformIcon platform={p} size={15} />
+              {t[platformKey(p)]}
+            </span>
+          ))}
+        </span>
+      )}
+    </span>
   );
 };
 
@@ -70,17 +70,22 @@ export const CaseLinks = ({ project, t }) => (
   </p>
 );
 
-// Linguagens em destaque; o restante da stack vem logo abaixo, sem repeti-las.
-export const LanguageTags = ({ project, t }) => {
-  if (!project.languages?.length) return null;
+// Stack em uma linha de texto, com peso decrescente: linguagens, tecnologias
+// principais e o restante.
+export const StackLine = ({ project }) => {
+  const items = [
+    ...project.tech.map((name) => ({ name, cls: isLanguage(name) ? "stack-lang" : "stack-main" })),
+    ...project.stack.map((name) => ({ name, cls: "" })),
+  ];
   return (
-    <ul className="case-langs" aria-label={t.languagesLabel}>
-      {project.languages.map((l) => (
-        <li key={l} className="lang-tag">
-          {l}
-        </li>
+    <p className="case-stack">
+      {items.map(({ name, cls }, i) => (
+        <span key={name}>
+          {cls ? <strong className={cls}>{name}</strong> : name}
+          {i < items.length - 1 && ", "}
+        </span>
       ))}
-    </ul>
+    </p>
   );
 };
 
@@ -88,10 +93,7 @@ export const CaseDetails = ({ project, t }) => (
   <>
     <p className="case-desc">{t[project.descKey]}</p>
     {project.roleKey && <p className="case-role">{t[project.roleKey]}</p>}
-    <LanguageTags project={project} t={t} />
-    <p className="case-stack">
-      {project.stack.filter((s) => !project.languages?.includes(s)).join(", ")}
-    </p>
+    <StackLine project={project} />
     <CaseLinks project={project} t={t} />
   </>
 );
@@ -111,7 +113,6 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
         {t[statusKey(project.status)]}
       </span>
     </p>
-    <PlatformTags project={project} t={t} />
   </div>
 );
 
@@ -126,7 +127,6 @@ const Frame = ({ project, t, onOpen }) => {
           <span />
           <span />
         </span>
-        <TypeTag project={project} t={t} compact />
       </div>
       {src ? (
         <button
