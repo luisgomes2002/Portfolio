@@ -15,6 +15,12 @@ export const resumes = [
 
 export const categories = ["work", "personal", "group", "freelance", "study"];
 
+// Onde o projeto roda; cada uma vira uma tag no card.
+export const platformKey = (p) => `plat${p[0].toUpperCase()}${p.slice(1)}`;
+
+// Título traduzível para projetos ainda sem nome próprio.
+export const projectTitle = (p, t) => (p.titleKey ? t[p.titleKey] : p.title);
+
 const capitalize = (s) => s[0].toUpperCase() + s.slice(1);
 export const catKey = (c) => `cat${capitalize(c)}`;
 export const statusKey = (s) => `status${capitalize(s)}`;
@@ -23,7 +29,7 @@ export const yearsLabel = ([start, end], t) =>
 
 // Prints: cada projeto lê as imagens de src/assets/<assets ou id>/, em ordem
 // alfabética. `cover` escolhe qual arquivo abre a lista.
-const imageFiles = import.meta.glob("./assets/*/*.{png,jpg,jpeg,webp}", {
+const imageFiles = import.meta.glob("./assets/*/*.{png,jpg,jpeg,webp,avif}", {
   eager: true,
   import: "default",
 });
@@ -43,6 +49,8 @@ const slidesFor = (folder, cover) => {
 const projectList = [
   {
     id: "murasaki",
+    languages: ["TypeScript", "Java", "JavaScript"],
+    platforms: ["web", "extension"],
     title: "Murasaki Languages",
     category: "personal",
     status: "development",
@@ -55,11 +63,14 @@ const projectList = [
       "TypeScript", "React", "Styled Components", "Java", "Spring Boot",
       "MongoDB", "Clean Architecture", "Redis", "AI", "Google Vision",
       "Google Cloud Storage", "Stripe", "Docker", "NGINX", "Prometheus", "Grafana",
+      "Chrome Extension (Manifest V3)", "YouTube Data API", "Google OAuth",
     ],
     site: "https://murasakilanguages.com/",
   },
   {
     id: "ecosys",
+    languages: ["Java", "TypeScript"],
+    platforms: ["web", "mobile"],
     org: "ZTHA",
     title: "Ecosys",
     category: "work",
@@ -77,6 +88,8 @@ const projectList = [
   },
   {
     id: "sagyou",
+    languages: ["TypeScript"],
+    platforms: ["desktop"],
     title: "Sagyou",
     category: "personal",
     status: "live",
@@ -89,6 +102,8 @@ const projectList = [
   },
   {
     id: "hotel-ellus",
+    languages: ["TypeScript"],
+    platforms: ["desktop"],
     assets: "hellos",
     title: "Hotel Ellus",
     category: "freelance",
@@ -105,6 +120,8 @@ const projectList = [
   },
   {
     id: "caderneta",
+    languages: ["Java"],
+    platforms: ["mobile"],
     org: "ZTHA",
     title: "Caderneta Digital",
     category: "work",
@@ -120,6 +137,8 @@ const projectList = [
   },
   {
     id: "ztha-acessos",
+    languages: ["TypeScript"],
+    platforms: ["web"],
     org: "ZTHA",
     title: "ZTHA Acessos",
     category: "work",
@@ -132,6 +151,8 @@ const projectList = [
   },
   {
     id: "ztha-auth",
+    languages: ["TypeScript"],
+    platforms: ["mobile"],
     org: "ZTHA",
     title: "ZTHA Auth",
     category: "work",
@@ -146,20 +167,11 @@ const projectList = [
     private: true,
   },
   {
-    id: "immerse",
-    title: "Murasaki Immerse",
-    category: "personal",
-    status: "development",
-    years: [2026, null],
-    descKey: "pdesc12",
-    roleKey: "roleSolo",
-    stack: ["JavaScript", "Chrome Extension (Manifest V3)", "YouTube Data API", "Google OAuth"],
-    private: true,
-  },
-  {
     id: "shokuji",
+    languages: ["Java", "TypeScript"],
+    platforms: ["web"],
     title: "Shokuji",
-    category: "personal",
+    category: "study",
     status: "development",
     years: [2026, null],
     descKey: "pdesc15",
@@ -169,6 +181,8 @@ const projectList = [
   },
   {
     id: "dsr",
+    languages: ["C++", "Python"],
+    platforms: ["desktop"],
     title: "DSR Network",
     category: "personal",
     status: "development",
@@ -180,17 +194,23 @@ const projectList = [
   },
   {
     id: "lost-heaven",
-    title: "Lost Heaven",
+    languages: ["C#"],
+    platforms: ["desktop"],
+    org: "Lost Heaven",
+    title: "Untitled game",
+    titleKey: "titleLostHeaven",
     category: "personal",
     status: "development",
     years: [2026, null],
     descKey: "pdesc16",
-    roleKey: "roleSolo",
+    roleKey: "roleLostHeaven",
     stack: ["Unity", "C#"],
     private: true,
   },
   {
     id: "aniboard",
+    languages: ["TypeScript"],
+    platforms: ["web"],
     team: 4,
     title: "AniBoard",
     category: "group",
@@ -206,6 +226,8 @@ const projectList = [
   },
   {
     id: "trifase",
+    languages: ["JavaScript"],
+    platforms: ["web"],
     title: "Trifase",
     category: "freelance",
     status: "live",
@@ -217,6 +239,7 @@ const projectList = [
   },
   {
     id: "tsunagi",
+    languages: ["C++", "JavaScript", "Python", "Java"],
     title: "Tsunagi",
     category: "study",
     status: "paused",
@@ -228,6 +251,8 @@ const projectList = [
   },
   {
     id: "murasaki-prototype",
+    languages: ["JavaScript"],
+    platforms: ["web"],
     title: "Murasaki Languages Prototype",
     category: "study",
     status: "archived",
@@ -238,17 +263,8 @@ const projectList = [
     repo: "https://github.com/luisgomes2002/Murasaki-Languages-Prototype",
   },
   {
-    id: "health-manager",
-    title: "Health Manager",
-    category: "study",
-    status: "development",
-    years: [2026, 2026],
-    descKey: "pdesc4",
-    stack: ["Java", "Spring Boot", "PostgreSQL", "Redis", "JPA", "Flyway", "MapStruct"],
-    repo: "https://github.com/luisgomes2002/Health-Manager-Backend",
-  },
-  {
     id: "rabbitmq",
+    languages: ["Java"],
     title: "Microservices Email RabbitMQ",
     category: "study",
     status: "study",
@@ -263,6 +279,13 @@ export const projects = projectList.map((p) => ({
   ...p,
   slides: slidesFor(p.assets ?? p.id, p.cover),
 }));
+
+// Linguagens para o filtro, da mais usada para a menos usada.
+export const languageOptions = Object.entries(
+  projects.flatMap((p) => p.languages ?? []).reduce((acc, l) => ({ ...acc, [l]: (acc[l] ?? 0) + 1 }), {}),
+)
+  .sort(([a, x], [b, y]) => y - x || a.localeCompare(b))
+  .map(([l]) => l);
 
 export const skillGroups = [
   {
@@ -362,19 +385,29 @@ export const i18nJson = {
     catGroup: "Em grupo",
     catFreelance: "Freelancer",
     catStudy: "Estudo",
+    platWeb: "Web",
+    platDesktop: "Desktop",
+    platMobile: "Mobile",
+    platExtension: "Extensão do Chrome",
+    platformsLabel: "Plataformas",
+    languagesLabel: "Linguagens",
+    filterLanguage: "Linguagem",
+    filterCategory: "Tipo",
+    noResults: "Nenhum projeto com essa combinação de filtros.",
+    titleLostHeaven: "Jogo sem nome",
+    roleLostHeaven: "Projeto individual: primeiro jogo da Lost Heaven, publisher independente que estou criando.",
     roleSolo: "Projeto individual, do planejamento à publicação.",
     roleFreelance: "Freelance individual, do desenvolvimento à entrega.",
     roleMurasaki:
-      "Projeto individual: front-end em React, API em Spring Boot, infraestrutura e monitoramento.",
+      "Projeto individual: front-end em React, API em Spring Boot, extensão do Chrome, infraestrutura e monitoramento.",
     roleEcosys: "Principal desenvolvedor da API, da aplicação web e do app mobile.",
     roleCaderneta: "Desenvolvi a API em Spring Boot e contribuí com o app mobile.",
     roleAcessos: "Desenvolvi a API e o front-end web.",
     roleAuth: "Desenvolvi o app mobile e contribuí com a API.",
     roleAniboard: "Um dos quatro desenvolvedores do projeto.",
-    pdesc1: "Plataforma de aprendizado de idiomas com aulas, cursos, flashcards e leitura com OCR.",
+    pdesc1: "Plataforma de aprendizado de idiomas com aulas, cursos, flashcards e leitura com OCR, mais uma extensão do Chrome que registra o tempo de imersão assistindo YouTube.",
     pdesc2: "Site para empresa de energia solar.",
     pdesc3: "Versão inicial da plataforma Murasaki.",
-    pdesc4: "Plataforma de gestão para profissionais da saúde.",
     pdesc5: "Projeto de estudo sobre microsserviços com RabbitMQ.",
     pdesc7:
       "Sistema desktop de gestão hoteleira com módulos de reservas, quartos, hóspedes, relatórios e auditoria.",
@@ -386,8 +419,6 @@ export const i18nJson = {
       "Fintech de cooperativa de crédito digital com contas, empréstimos, investimentos e cartões, em monólito modular com Clean Architecture.",
     pdesc11:
       "Portal interno para pedir, aprovar e liberar acesso a credenciais e repositórios, com revogação total no desligamento e histórico auditável.",
-    pdesc12:
-      "Extensão do Chrome que registra o tempo de imersão em idiomas assistindo YouTube, integrada ao Murasaki Languages.",
     pdesc13:
       "Servidor de filas de mensagens TCP leve, com TTL, notificações de expiração e bibliotecas cliente em JS, Python e Java.",
     pdesc14:
@@ -454,19 +485,29 @@ export const i18nJson = {
     catGroup: "Group",
     catFreelance: "Freelance",
     catStudy: "Study",
+    platWeb: "Web",
+    platDesktop: "Desktop",
+    platMobile: "Mobile",
+    platExtension: "Chrome extension",
+    platformsLabel: "Platforms",
+    languagesLabel: "Languages",
+    filterLanguage: "Language",
+    filterCategory: "Type",
+    noResults: "No projects match this combination of filters.",
+    titleLostHeaven: "Untitled game",
+    roleLostHeaven: "Solo project: the first game from Lost Heaven, the indie publisher I'm starting.",
     roleSolo: "Solo project, from planning to release.",
     roleFreelance: "Solo freelance work, from development to delivery.",
     roleMurasaki:
-      "Solo project: React front end, Spring Boot API, infrastructure and monitoring.",
+      "Solo project: React front end, Spring Boot API, Chrome extension, infrastructure and monitoring.",
     roleEcosys: "Lead developer of the API, the web app and the mobile app.",
     roleCaderneta: "Built the Spring Boot API and contributed to the mobile app.",
     roleAcessos: "Built the API and the web front end.",
     roleAuth: "Built the mobile app and contributed to the API.",
     roleAniboard: "One of the project's four developers.",
-    pdesc1: "Language learning platform with lessons, courses, flashcards and OCR-assisted reading.",
+    pdesc1: "Language learning platform with lessons, courses, flashcards and OCR-assisted reading, plus a Chrome extension that tracks immersion time while watching YouTube.",
     pdesc2: "Website for a solar energy company.",
     pdesc3: "Initial version of the Murasaki platform.",
-    pdesc4: "Management platform for healthcare professionals.",
     pdesc5: "Study project on microservices with RabbitMQ.",
     pdesc7:
       "Desktop hotel management system with modules for reservations, rooms, guests, reports and audit.",
@@ -478,8 +519,6 @@ export const i18nJson = {
       "Digital credit union fintech with accounts, loans, investments and cards, built as a modular monolith with Clean Architecture.",
     pdesc11:
       "Internal portal to request, approve and grant access to credentials and repositories, with full revocation on offboarding and an audit trail.",
-    pdesc12:
-      "Chrome extension that tracks language immersion time while watching YouTube, integrated with Murasaki Languages.",
     pdesc13:
       "Lightweight TCP message queue server with TTL, expiration notifications and client libraries in JS, Python and Java.",
     pdesc14:
@@ -546,19 +585,29 @@ export const i18nJson = {
     catGroup: "グループ",
     catFreelance: "フリーランス",
     catStudy: "学習",
+    platWeb: "Web",
+    platDesktop: "デスクトップ",
+    platMobile: "モバイル",
+    platExtension: "Chrome拡張機能",
+    platformsLabel: "プラットフォーム",
+    languagesLabel: "言語",
+    filterLanguage: "言語",
+    filterCategory: "種類",
+    noResults: "この条件に当てはまるプロジェクトはありません。",
+    titleLostHeaven: "タイトル未定のゲーム",
+    roleLostHeaven: "個人プロジェクト：立ち上げ中のインディーパブリッシャー「Lost Heaven」の第1作。",
     roleSolo: "個人プロジェクト。企画から公開まで担当。",
     roleFreelance: "個人でのフリーランス案件。開発から納品まで担当。",
     roleMurasaki:
-      "個人プロジェクト：ReactのフロントエンドとSpring BootのAPI、インフラ、監視まで担当。",
+      "個人プロジェクト：ReactのフロントエンドとSpring BootのAPI、Chrome拡張機能、インフラ、監視まで担当。",
     roleEcosys: "API、Webアプリ、モバイルアプリの主担当開発者。",
     roleCaderneta: "Spring BootのAPIを開発し、モバイルアプリにも参加。",
     roleAcessos: "APIとWebフロントエンドを開発。",
     roleAuth: "モバイルアプリを開発し、APIにも参加。",
     roleAniboard: "4人の開発メンバーの1人。",
-    pdesc1: "レッスン、コース、フラッシュカード、OCRによる読解機能を備えた語学学習プラットフォーム。",
+    pdesc1: "レッスン、コース、フラッシュカード、OCRによる読解機能を備えた語学学習プラットフォーム。YouTube視聴中のイマージョン時間を記録するChrome拡張機能も提供。",
     pdesc2: "太陽光発電会社のウェブサイト。",
     pdesc3: "Murasakiプラットフォームの初期バージョン。",
-    pdesc4: "医療専門職向けの管理プラットフォーム。",
     pdesc5: "RabbitMQを使ったマイクロサービスの学習プロジェクト。",
     pdesc7:
       "予約・客室・宿泊客・レポート・監査モジュールを備えたデスクトップホテル管理システム。",
@@ -570,8 +619,6 @@ export const i18nJson = {
       "口座・ローン・投資・カードを提供するデジタル信用組合向けフィンテック。クリーンアーキテクチャによるモジュラーモノリス。",
     pdesc11:
       "認証情報やリポジトリへのアクセスを申請・承認・付与する社内ポータル。退職時の一括取り消しと監査履歴付き。",
-    pdesc12:
-      "YouTube視聴中の語学イマージョン時間を記録するChrome拡張機能。Murasaki Languagesと連携。",
     pdesc13:
       "TTL、期限切れ通知、JS・Python・Javaのクライアントライブラリを備えた軽量TCPメッセージキューサーバー。",
     pdesc14:

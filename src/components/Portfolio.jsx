@@ -5,6 +5,7 @@ import {
   catKey,
   categories,
   i18nJson,
+  languageOptions,
   links,
   projects,
   resumes,
@@ -29,8 +30,7 @@ const readLang = () => {
 // Número fixo por projeto, na ordem de `projects`.
 const numbered = projects.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, "0") }));
 const filterOptions = categories.filter((c) => projects.some((p) => p.category === c));
-const countOf = (c) =>
-  c === "all" ? projects.length : projects.filter((p) => p.category === c).length;
+const usesLanguage = (code) => (p) => !code || p.languages?.includes(code);
 
 // Título com uma palavra em vermelhão.
 const Marked = ({ pre, hl, post }) => (
@@ -57,6 +57,7 @@ const NoteArrow = ({ className }) => (
 const Portfolio = () => {
   const [lang, setLang] = useState(readLang);
   const [filter, setFilter] = useState("all");
+  const [codeFilter, setCodeFilter] = useState(null);
   const [opened, setOpened] = useState(null);
 
   const t = i18nJson[lang];
@@ -72,11 +73,15 @@ const Portfolio = () => {
 
   // Em "Todos": destaques largos no topo e, abaixo, todos os projetos agrupados
   // por tipo (os destaques se repetem no grupo). Com filtro: só o grupo escolhido.
-  const wide = filter === "all" ? numbered.filter((p) => p.featured) : [];
+  // O filtro de linguagem se combina com o de tipo.
+  const visible = numbered.filter(usesLanguage(codeFilter));
+  const countOf = (c) =>
+    c === "all" ? visible.length : visible.filter((p) => p.category === c).length;
+  const wide = filter === "all" ? visible.filter((p) => p.featured) : [];
   const groups = (filter === "all" ? filterOptions : [filter])
     .map((c) => ({
       category: c,
-      items: numbered.filter((p) => p.category === c),
+      items: visible.filter((p) => p.category === c),
     }))
     .filter((g) => g.items.length > 0);
 
@@ -162,22 +167,45 @@ const Portfolio = () => {
               <h2 className="section-title">
                 <Marked pre={t.projectsPre} hl={t.projectsHl} post={t.projectsPost} />
               </h2>
-              <div className="filters" role="group" aria-label={t.projectsTitle}>
-                {["all", ...filterOptions].map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    className={filter === c ? "is-active" : ""}
-                    aria-pressed={filter === c}
-                    onClick={() => setFilter(c)}
-                  >
-                    {c !== "all" && <TypeIcon category={c} size={15} />}
-                    {c === "all" ? t.filterAll : t[catKey(c)]}
-                    <span className="filter-count">{countOf(c)}</span>
-                  </button>
-                ))}
+              <div className="filter-rows">
+                <div className="filters" role="group" aria-label={t.filterCategory}>
+                  {["all", ...filterOptions].map((c) => (
+                    <button
+                      key={c}
+                      type="button"
+                      className={filter === c ? "is-active" : ""}
+                      aria-pressed={filter === c}
+                      onClick={() => setFilter(c)}
+                    >
+                      {c !== "all" && <TypeIcon category={c} size={15} />}
+                      {c === "all" ? t.filterAll : t[catKey(c)]}
+                      <span className="filter-count">{countOf(c)}</span>
+                    </button>
+                  ))}
+                </div>
+                <div className="filters filters-lang" role="group" aria-label={t.filterLanguage}>
+                  <span className="filters-label">{t.filterLanguage}</span>
+                  {languageOptions.map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      className={codeFilter === l ? "is-active" : ""}
+                      aria-pressed={codeFilter === l}
+                      onClick={() => setCodeFilter((cur) => (cur === l ? null : l))}
+                    >
+                      {l}
+                      <span className="filter-count">
+                        {numbered.filter(usesLanguage(l)).length}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {wide.length === 0 && groups.length === 0 && (
+              <p className="no-results">{t.noResults}</p>
+            )}
 
             {wide.map((p, i) => (
               <Case

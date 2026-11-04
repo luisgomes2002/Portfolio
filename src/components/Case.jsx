@@ -1,5 +1,7 @@
-import { catKey, statusKey, yearsLabel } from "../content";
-import { ArrowUpRight, Book, Briefcase, FileCheck, User, Users } from "./Icons";
+import { catKey, platformKey, projectTitle, statusKey, yearsLabel } from "../content";
+import {
+  ArrowUpRight, Book, Briefcase, FileCheck, Globe, Monitor, Puzzle, Smartphone, User, Users,
+} from "./Icons";
 
 const TYPE_ICONS = {
   work: Briefcase,
@@ -26,6 +28,30 @@ export const TypeTag = ({ project, t, compact = false }) => {
   );
 };
 
+const PLATFORM_ICONS = {
+  web: Globe,
+  desktop: Monitor,
+  mobile: Smartphone,
+  extension: Puzzle,
+};
+
+export const PlatformTags = ({ project, t }) => {
+  if (!project.platforms?.length) return null;
+  return (
+    <ul className="case-platforms" aria-label={t.platformsLabel}>
+      {project.platforms.map((p) => {
+        const Icon = PLATFORM_ICONS[p];
+        return (
+          <li key={p} className="platform-tag">
+            <Icon size={13} />
+            {t[platformKey(p)]}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
 export const CaseLinks = ({ project, t }) => (
   <p className="case-links">
     {project.site && (
@@ -44,11 +70,28 @@ export const CaseLinks = ({ project, t }) => (
   </p>
 );
 
+// Linguagens em destaque; o restante da stack vem logo abaixo, sem repeti-las.
+export const LanguageTags = ({ project, t }) => {
+  if (!project.languages?.length) return null;
+  return (
+    <ul className="case-langs" aria-label={t.languagesLabel}>
+      {project.languages.map((l) => (
+        <li key={l} className="lang-tag">
+          {l}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 export const CaseDetails = ({ project, t }) => (
   <>
     <p className="case-desc">{t[project.descKey]}</p>
     {project.roleKey && <p className="case-role">{t[project.roleKey]}</p>}
-    <p className="case-stack">{project.stack.join(", ")}</p>
+    <LanguageTags project={project} t={t} />
+    <p className="case-stack">
+      {project.stack.filter((s) => !project.languages?.includes(s)).join(", ")}
+    </p>
     <CaseLinks project={project} t={t} />
   </>
 );
@@ -60,7 +103,7 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
       <TypeTag project={project} t={t} />
     </div>
     <Tag className="case-title" id={id}>
-      {project.title}
+      {projectTitle(project, t)}
     </Tag>
     <p className="case-meta">
       {yearsLabel(project.years, t)} ·{" "}
@@ -68,6 +111,7 @@ export const CaseHeading = ({ project, num, t, as: Tag = "h3", id }) => (
         {t[statusKey(project.status)]}
       </span>
     </p>
+    <PlatformTags project={project} t={t} />
   </div>
 );
 
@@ -89,7 +133,7 @@ const Frame = ({ project, t, onOpen }) => {
           type="button"
           className="frame-shot"
           onClick={() => onOpen(0)}
-          aria-label={`${t.openGallery} ${project.title}`}
+          aria-label={`${t.openGallery} ${projectTitle(project, t)}`}
         >
           <img src={src} alt="" loading="lazy" />
         </button>
@@ -111,7 +155,7 @@ const Thumbs = ({ project, t, onOpen }) => {
           type="button"
           className="case-thumb"
           onClick={() => onOpen(i + 1)}
-          aria-label={`${t.openGallery} ${project.title} (${i + 2}/${project.slides.length})`}
+          aria-label={`${t.openGallery} ${projectTitle(project, t)} (${i + 2}/${project.slides.length})`}
         >
           <img src={src} alt="" loading="lazy" />
         </button>
