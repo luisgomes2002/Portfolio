@@ -10,6 +10,8 @@ import {
   projects,
   resumes,
   skillGroups,
+  techKind,
+  techOptions,
 } from "../content";
 import Case, { TypeIcon } from "./Case";
 import ProjectModal from "./ProjectModal";
@@ -30,7 +32,7 @@ const readLang = () => {
 // Número fixo por projeto, na ordem de `projects`.
 const numbered = projects.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, "0") }));
 const filterOptions = categories.filter((c) => projects.some((p) => p.category === c));
-const usesLanguage = (code) => (p) => !code || p.languages?.includes(code);
+const usesTech = (name) => (p) => !name || p.tech.includes(name);
 
 // Título com uma palavra em vermelhão.
 const Marked = ({ pre, hl, post }) => (
@@ -57,7 +59,7 @@ const NoteArrow = ({ className }) => (
 const Portfolio = () => {
   const [lang, setLang] = useState(readLang);
   const [filter, setFilter] = useState("all");
-  const [codeFilter, setCodeFilter] = useState(null);
+  const [techFilter, setTechFilter] = useState(null);
   const [opened, setOpened] = useState(null);
 
   const t = i18nJson[lang];
@@ -73,8 +75,8 @@ const Portfolio = () => {
 
   // Em "Todos": destaques largos no topo e, abaixo, todos os projetos agrupados
   // por tipo (os destaques se repetem no grupo). Com filtro: só o grupo escolhido.
-  // O filtro de linguagem se combina com o de tipo.
-  const visible = numbered.filter(usesLanguage(codeFilter));
+  // O filtro de tecnologia se combina com o de tipo.
+  const visible = numbered.filter(usesTech(techFilter));
   const countOf = (c) =>
     c === "all" ? visible.length : visible.filter((p) => p.category === c).length;
   const wide = filter === "all" ? visible.filter((p) => p.featured) : [];
@@ -183,23 +185,27 @@ const Portfolio = () => {
                     </button>
                   ))}
                 </div>
-                <div className="filters filters-lang" role="group" aria-label={t.filterLanguage}>
-                  <span className="filters-label">{t.filterLanguage}</span>
-                  {languageOptions.map((l) => (
-                    <button
-                      key={l}
-                      type="button"
-                      className={codeFilter === l ? "is-active" : ""}
-                      aria-pressed={codeFilter === l}
-                      onClick={() => setCodeFilter((cur) => (cur === l ? null : l))}
-                    >
-                      {l}
-                      <span className="filter-count">
-                        {numbered.filter(usesLanguage(l)).length}
-                      </span>
-                    </button>
-                  ))}
-                </div>
+                {[
+                  [t.filterLanguage, languageOptions],
+                  [t.filterTech, techOptions],
+                ].map(([label, options]) => (
+                  <div key={label} className="filters filters-tech" role="group" aria-label={label}>
+                    <span className="filters-label">{label}</span>
+                    {options.map((name) => (
+                      <button
+                        key={name}
+                        type="button"
+                        className={`kind-${techKind(name)} ${techFilter === name ? "is-active" : ""}`}
+                        aria-pressed={techFilter === name}
+                        onClick={() => setTechFilter((cur) => (cur === name ? null : name))}
+                      >
+                        <span className="kind-dot" aria-hidden />
+                        {name}
+                        <span className="filter-count">{numbered.filter(usesTech(name)).length}</span>
+                      </button>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
 

@@ -1,4 +1,4 @@
-import { catKey, platformKey, projectTitle, statusKey, yearsLabel } from "../content";
+import { catKey, platformKey, projectTitle, statusKey, techKind, yearsLabel } from "../content";
 import {
   ArrowUpRight, Book, Briefcase, FileCheck, Globe, Monitor, Puzzle, Smartphone, User, Users,
 } from "./Icons";
@@ -70,28 +70,24 @@ export const CaseLinks = ({ project, t }) => (
   </p>
 );
 
-// Linguagens em destaque; o restante da stack vem logo abaixo, sem repeti-las.
-export const LanguageTags = ({ project, t }) => {
-  if (!project.languages?.length) return null;
-  return (
-    <ul className="case-langs" aria-label={t.languagesLabel}>
-      {project.languages.map((l) => (
-        <li key={l} className="lang-tag">
-          {l}
-        </li>
-      ))}
-    </ul>
-  );
-};
+// Linguagens e tecnologias principais em tags coloridas por tipo; o restante
+// da stack vem logo abaixo, em texto.
+export const TechTags = ({ project, t }) => (
+  <ul className="case-tech" aria-label={t.techLabel}>
+    {project.tech.map((name) => (
+      <li key={name} className={`tech-tag kind-${techKind(name)}`}>
+        {name}
+      </li>
+    ))}
+  </ul>
+);
 
 export const CaseDetails = ({ project, t }) => (
   <>
     <p className="case-desc">{t[project.descKey]}</p>
     {project.roleKey && <p className="case-role">{t[project.roleKey]}</p>}
-    <LanguageTags project={project} t={t} />
-    <p className="case-stack">
-      {project.stack.filter((s) => !project.languages?.includes(s)).join(", ")}
-    </p>
+    <TechTags project={project} t={t} />
+    {project.stack.length > 0 && <p className="case-stack">{project.stack.join(", ")}</p>}
     <CaseLinks project={project} t={t} />
   </>
 );

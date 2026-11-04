@@ -49,7 +49,6 @@ const slidesFor = (folder, cover) => {
 const projectList = [
   {
     id: "murasaki",
-    languages: ["TypeScript", "Java", "JavaScript"],
     platforms: ["web", "extension"],
     title: "Murasaki Languages",
     category: "personal",
@@ -59,17 +58,19 @@ const projectList = [
     descKey: "pdesc1",
     roleKey: "roleMurasaki",
     cover: "home.png",
+    tech: [
+      "TypeScript", "Java", "React", "Spring Boot", "Spring AI", "MongoDB", "Redis",
+      "Docker", "Chrome Extension",
+    ],
     stack: [
-      "TypeScript", "React", "Styled Components", "Java", "Spring Boot",
-      "MongoDB", "Clean Architecture", "Redis", "AI", "Google Vision",
-      "Google Cloud Storage", "Stripe", "Docker", "NGINX", "Prometheus", "Grafana",
-      "Chrome Extension (Manifest V3)", "YouTube Data API", "Google OAuth",
+      "Styled Components", "Clean Architecture", "Google Vision", "Google Cloud Storage",
+      "Stripe", "NGINX", "Prometheus", "Grafana", "Testcontainers", "Manifest V3",
+      "YouTube Data API", "Google OAuth",
     ],
     site: "https://murasakilanguages.com/",
   },
   {
     id: "ecosys",
-    languages: ["Java", "TypeScript"],
     platforms: ["web", "mobile"],
     org: "ZTHA",
     title: "Ecosys",
@@ -79,17 +80,19 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc9",
     roleKey: "roleEcosys",
+    tech: [
+      "Java", "TypeScript", "Spring Boot", "React", "React Native", "Expo", "PostgreSQL",
+      "Redis", "SQLite", "Docker",
+    ],
     stack: [
-      "Java", "Spring Boot", "PostgreSQL", "Redis", "Flyway", "JWT", "Bucket4j",
-      "MapStruct", "AspectJ", "Docker", "React", "TypeScript",
-      "Styled Components", "Recharts", "Leaflet", "React Native", "Expo",
+      "Flyway", "JWT", "Bucket4j", "MapStruct", "AspectJ", "Testcontainers",
+      "Styled Components", "Recharts", "Leaflet", "Vitest", "Playwright", "Jest",
     ],
     private: true,
   },
   {
     id: "sagyou",
-    languages: ["TypeScript"],
-    platforms: ["desktop"],
+    platforms: ["desktop", "mobile"],
     title: "Sagyou",
     category: "personal",
     status: "live",
@@ -97,12 +100,15 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc8",
     roleKey: "roleSolo",
-    stack: ["Electron", "React", "TypeScript", "Zustand", "dnd kit", "Tailwind CSS", "Vitest"],
+    tech: [
+      "TypeScript", "Electron", "React", "React Native", "Expo", "SQLite",
+      "Cloudflare Workers", "Tailwind CSS",
+    ],
+    stack: ["Zustand", "dnd kit", "D3", "xterm.js", "Claude API", "Vitest", "Jest"],
     repo: "https://github.com/luisgomes2002/Sagyou",
   },
   {
     id: "hotel-ellus",
-    languages: ["TypeScript"],
     platforms: ["desktop"],
     assets: "hellos",
     title: "Hotel Ellus",
@@ -112,15 +118,15 @@ const projectList = [
     years: [2026, 2026],
     descKey: "pdesc7",
     roleKey: "roleFreelance",
+    tech: ["TypeScript", "Electron", "React", "SQLite"],
     stack: [
-      "Electron", "TypeScript", "React", "SQLite", "Radix UI", "Zustand", "Zod",
-      "React Hook Form", "TanStack Table", "Vite",
+      "Radix UI", "Styled Components", "Zustand", "Zod", "React Hook Form",
+      "TanStack Table", "Vite", "Vitest",
     ],
     private: true,
   },
   {
     id: "caderneta",
-    languages: ["Java"],
     platforms: ["mobile"],
     org: "ZTHA",
     title: "Caderneta Digital",
@@ -129,15 +135,17 @@ const projectList = [
     years: [2025, 2026],
     descKey: "pdesc10",
     roleKey: "roleCaderneta",
+    tech: [
+      "Java", "TypeScript", "Spring Boot", "React Native", "Expo", "PostgreSQL", "Redis",
+    ],
     stack: [
-      "Java", "Spring Boot", "PostgreSQL", "Clean Architecture",
-      "Modular Monolith", "React Native", "Expo",
+      "Clean Architecture", "Modular Monolith", "Flyway", "JWT", "MapStruct",
+      "Testcontainers", "NativeWind",
     ],
     private: true,
   },
   {
     id: "ztha-acessos",
-    languages: ["TypeScript"],
     platforms: ["web"],
     org: "ZTHA",
     title: "ZTHA Acessos",
@@ -146,12 +154,12 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc11",
     roleKey: "roleAcessos",
-    stack: ["TypeScript", "NestJS", "Prisma", "PostgreSQL", "Next.js", "Tailwind CSS", "Docker"],
+    tech: ["TypeScript", "NestJS", "Next.js", "Prisma", "PostgreSQL", "Tailwind CSS", "Docker"],
+    stack: ["Passport", "JWT", "Jest"],
     private: true,
   },
   {
     id: "ztha-auth",
-    languages: ["TypeScript"],
     platforms: ["mobile"],
     org: "ZTHA",
     title: "ZTHA Auth",
@@ -160,15 +168,14 @@ const projectList = [
     years: [2024, 2025],
     descKey: "pdesc18",
     roleKey: "roleAuth",
-    stack: [
-      "TypeScript", "React Native", "Expo", "TOTP", "Biometrics", "Node.js",
-      "Fastify", "Prisma", "PostgreSQL", "JWT", "Zod",
+    tech: [
+      "TypeScript", "React Native", "Expo", "Node.js", "Fastify", "Prisma", "PostgreSQL",
     ],
+    stack: ["TOTP", "Biometrics", "JWT", "Zod"],
     private: true,
   },
   {
     id: "shokuji",
-    languages: ["Java", "TypeScript"],
     platforms: ["web"],
     title: "Shokuji",
     category: "study",
@@ -176,12 +183,18 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc15",
     roleKey: "roleSolo",
-    stack: ["Java", "Spring Boot", "PostgreSQL", "React", "TypeScript", "PWA", "Mercado Pago", "Docker"],
+    tech: [
+      "Java", "TypeScript", "Spring Boot", "React", "PostgreSQL", "Redis", "Kafka",
+      "gRPC", "Docker",
+    ],
+    stack: [
+      "Microservices", "Transactional Outbox", "WebSocket", "Flyway", "Traefik",
+      "Testcontainers", "PWA", "Mercado Pago",
+    ],
     repo: "https://github.com/luisgomes2002/SGG",
   },
   {
     id: "dsr",
-    languages: ["C++", "Python"],
     platforms: ["desktop"],
     title: "DSR Network",
     category: "personal",
@@ -189,12 +202,12 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc14",
     roleKey: "roleSolo",
-    stack: ["C++17", "Winsock", "TLS 1.2", "DTLS 1.2", "CMake", "Python"],
+    tech: ["C++", "Python", "OpenSSL", "CMake"],
+    stack: ["C++17", "Winsock", "TLS 1.2", "DTLS 1.2"],
     repo: "https://github.com/luisgomes2002/DSR_CWSC",
   },
   {
     id: "lost-heaven",
-    languages: ["C#"],
     platforms: ["desktop"],
     org: "Lost Heaven",
     title: "Untitled game",
@@ -204,12 +217,12 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc16",
     roleKey: "roleLostHeaven",
-    stack: ["Unity", "C#"],
+    tech: ["C#", "Unity"],
+    stack: [],
     private: true,
   },
   {
     id: "aniboard",
-    languages: ["TypeScript"],
     platforms: ["web"],
     team: 4,
     title: "AniBoard",
@@ -218,15 +231,12 @@ const projectList = [
     years: [2026, null],
     descKey: "pdesc17",
     roleKey: "roleAniboard",
-    stack: [
-      "TypeScript", "Next.js", "React", "Supabase", "PostgreSQL",
-      "Tailwind CSS", "shadcn/ui", "Vitest", "Playwright",
-    ],
+    tech: ["TypeScript", "Next.js", "React", "Supabase", "PostgreSQL", "Tailwind CSS"],
+    stack: ["shadcn/ui", "Vitest", "Playwright"],
     site: "https://aniboard-v0.vercel.app",
   },
   {
     id: "trifase",
-    languages: ["JavaScript"],
     platforms: ["web"],
     title: "Trifase",
     category: "freelance",
@@ -234,24 +244,24 @@ const projectList = [
     years: [2024, 2025],
     descKey: "pdesc2",
     roleKey: "roleFreelance",
-    stack: ["React", "CSS"],
+    tech: ["JavaScript", "React"],
+    stack: ["Vite", "CSS"],
     site: "https://trifaseenergiasolar.com/",
   },
   {
     id: "tsunagi",
-    languages: ["C++", "JavaScript", "Python", "Java"],
     title: "Tsunagi",
     category: "study",
     status: "paused",
     years: [2025, 2026],
     descKey: "pdesc13",
     roleKey: "roleSolo",
-    stack: ["C++17", "TCP Sockets", "Multithreading", "CMake", "JavaScript", "Python", "Java"],
+    tech: ["C++", "Java", "JavaScript", "Python", "CMake"],
+    stack: ["C++17", "TCP Sockets", "Multithreading"],
     repo: "https://github.com/luisgomes2002/Tsunagi",
   },
   {
     id: "murasaki-prototype",
-    languages: ["JavaScript"],
     platforms: ["web"],
     title: "Murasaki Languages Prototype",
     category: "study",
@@ -259,18 +269,19 @@ const projectList = [
     years: [2023, 2025],
     descKey: "pdesc3",
     roleKey: "roleSolo",
-    stack: ["JavaScript", "React", "Styled Components", "Node.js", "Express", "MongoDB"],
+    tech: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    stack: ["Styled Components", "Socket.IO", "Passport", "JWT"],
     repo: "https://github.com/luisgomes2002/Murasaki-Languages-Prototype",
   },
   {
     id: "rabbitmq",
-    languages: ["Java"],
     title: "Microservices Email RabbitMQ",
     category: "study",
     status: "study",
     years: [2025, 2025],
     descKey: "pdesc5",
-    stack: ["Java", "Spring Boot", "PostgreSQL", "RabbitMQ"],
+    tech: ["Java", "Spring Boot", "RabbitMQ", "PostgreSQL"],
+    stack: ["Microservices", "Flyway", "JPA", "Springdoc OpenAPI"],
     repo: "https://github.com/luisgomes2002/Microsservices-Email-RabbitMQ",
   },
 ];
@@ -280,12 +291,31 @@ export const projects = projectList.map((p) => ({
   slides: slidesFor(p.assets ?? p.id, p.cover),
 }));
 
-// Linguagens para o filtro, da mais usada para a menos usada.
-export const languageOptions = Object.entries(
-  projects.flatMap((p) => p.languages ?? []).reduce((acc, l) => ({ ...acc, [l]: (acc[l] ?? 0) + 1 }), {}),
-)
-  .sort(([a, x], [b, y]) => y - x || a.localeCompare(b))
-  .map(([l]) => l);
+// Tipo de cada tecnologia em destaque; o tipo define a cor da tag.
+const TECH_KINDS = {
+  lang: ["TypeScript", "JavaScript", "Java", "C++", "C#", "Python"],
+  front: ["React", "Next.js", "Tailwind CSS"],
+  app: ["React Native", "Expo", "Electron", "Unity", "Chrome Extension"],
+  back: ["Spring Boot", "Spring AI", "NestJS", "Node.js", "Express", "Fastify", "Prisma", "gRPC"],
+  data: ["PostgreSQL", "MongoDB", "Redis", "SQLite", "Supabase"],
+  infra: ["Docker", "Kafka", "RabbitMQ", "Cloudflare Workers", "OpenSSL", "CMake"],
+};
+const kindByTech = Object.fromEntries(
+  Object.entries(TECH_KINDS).flatMap(([kind, names]) => names.map((n) => [n, kind])),
+);
+export const techKind = (name) => kindByTech[name] ?? "infra";
+
+// Opções do filtro, das mais usadas para as menos usadas: todas as linguagens
+// e as demais tecnologias que aparecem em pelo menos dois projetos.
+const usage = projects
+  .flatMap((p) => p.tech)
+  .reduce((acc, n) => ({ ...acc, [n]: (acc[n] ?? 0) + 1 }), {});
+const byUsage = (names) =>
+  names.sort((a, b) => usage[b] - usage[a] || a.localeCompare(b));
+export const languageOptions = byUsage(Object.keys(usage).filter((n) => techKind(n) === "lang"));
+export const techOptions = byUsage(
+  Object.keys(usage).filter((n) => techKind(n) !== "lang" && usage[n] >= 2),
+);
 
 export const skillGroups = [
   {
@@ -390,7 +420,8 @@ export const i18nJson = {
     platMobile: "Mobile",
     platExtension: "Extensão do Chrome",
     platformsLabel: "Plataformas",
-    languagesLabel: "Linguagens",
+    techLabel: "Principais tecnologias",
+    filterTech: "Tecnologia",
     filterLanguage: "Linguagem",
     filterCategory: "Tipo",
     noResults: "Nenhum projeto com essa combinação de filtros.",
@@ -412,7 +443,7 @@ export const i18nJson = {
     pdesc7:
       "Sistema desktop de gestão hoteleira com módulos de reservas, quartos, hóspedes, relatórios e auditoria.",
     pdesc8:
-      "Kanban pessoal offline com hábitos, metas, lista de compras, canvas e importação via IA.",
+      "Kanban pessoal offline com hábitos, metas, finanças, canvas e importação via IA, com app desktop e app mobile sincronizados.",
     pdesc9:
       "Plataforma de gestão de cooperativas agrícolas: web administrativa, API e app mobile para produtores venderem seus produtos.",
     pdesc10:
@@ -490,7 +521,8 @@ export const i18nJson = {
     platMobile: "Mobile",
     platExtension: "Chrome extension",
     platformsLabel: "Platforms",
-    languagesLabel: "Languages",
+    techLabel: "Main technologies",
+    filterTech: "Technology",
     filterLanguage: "Language",
     filterCategory: "Type",
     noResults: "No projects match this combination of filters.",
@@ -512,7 +544,7 @@ export const i18nJson = {
     pdesc7:
       "Desktop hotel management system with modules for reservations, rooms, guests, reports and audit.",
     pdesc8:
-      "Offline personal kanban with habits, goals, shopping list, canvas and AI-assisted import.",
+      "Offline personal kanban with habits, goals, finances, canvas and AI-assisted import, with synced desktop and mobile apps.",
     pdesc9:
       "Agricultural cooperative management platform: admin web app, API and mobile app for farmers to sell their products.",
     pdesc10:
@@ -590,7 +622,8 @@ export const i18nJson = {
     platMobile: "モバイル",
     platExtension: "Chrome拡張機能",
     platformsLabel: "プラットフォーム",
-    languagesLabel: "言語",
+    techLabel: "主な技術",
+    filterTech: "技術",
     filterLanguage: "言語",
     filterCategory: "種類",
     noResults: "この条件に当てはまるプロジェクトはありません。",
@@ -612,7 +645,7 @@ export const i18nJson = {
     pdesc7:
       "予約・客室・宿泊客・レポート・監査モジュールを備えたデスクトップホテル管理システム。",
     pdesc8:
-      "習慣、目標、買い物リスト、キャンバス、AIによるインポート機能を備えたオフライン個人用かんばん。",
+      "習慣、目標、家計、キャンバス、AIによるインポート機能を備えたオフライン個人用かんばん。デスクトップ版とモバイル版を同期。",
     pdesc9:
       "農業協同組合の管理プラットフォーム：管理用Webアプリ、API、生産者が商品を販売するためのモバイルアプリ。",
     pdesc10:

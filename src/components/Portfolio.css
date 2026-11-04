@@ -392,14 +392,28 @@ a {
   align-items: flex-end;
   gap: 10px;
 }
-.filters-lang {
+.filters-tech {
   align-items: center;
   justify-content: flex-end;
 }
-.filters-lang button {
+.filters-tech button {
   height: 32px;
   padding: 0 12px;
   font-size: 14px;
+}
+.kind-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--kind-fg);
+}
+.filters-tech button.is-active {
+  background: var(--kind-bg);
+  border-color: var(--kind-fg);
+  color: var(--kind-fg);
+}
+.filters-tech button.is-active .filter-count {
+  color: var(--kind-fg);
 }
 .filters-label {
   margin-right: 4px;
@@ -686,7 +700,15 @@ a {
   margin-top: 8px;
   color: var(--ink-2);
 }
-.case-langs {
+/* Cores por tipo de tecnologia (tags dos cards e filtros). */
+.kind-lang  { --kind-bg: #e3eaf5; --kind-fg: #2b4a7a; }
+.kind-front { --kind-bg: #eee8f8; --kind-fg: #5b3a99; }
+.kind-app   { --kind-bg: #e1f1ee; --kind-fg: #1f6158; }
+.kind-back  { --kind-bg: #e5f0e5; --kind-fg: #2f6a3f; }
+.kind-data  { --kind-bg: #f7eddb; --kind-fg: #7f520c; }
+.kind-infra { --kind-bg: #f7e4dd; --kind-fg: #9a3b22; }
+
+.case-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -694,20 +716,26 @@ a {
   padding: 0;
   list-style: none;
 }
-.lang-tag {
+.tech-tag {
   display: inline-flex;
   align-items: center;
   height: 26px;
   padding: 0 10px;
+  border: 1px solid color-mix(in srgb, var(--kind-fg) 25%, transparent);
   border-radius: var(--r-sm);
-  background: var(--ai);
-  color: var(--on-deep);
+  background: var(--kind-bg);
+  color: var(--kind-fg);
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
 }
-.case-langs + .case-stack {
+.tech-tag.kind-lang {
+  background: var(--kind-fg);
+  border-color: var(--kind-fg);
+  color: #fff;
+}
+.case-tech + .case-stack {
   margin-top: 10px;
 }
 .case-stack {
@@ -939,7 +967,7 @@ a {
 /* RESPONSIVO */
 @media (max-width: 960px) {
   .filter-rows,
-  .filters-lang {
+  .filters-tech {
     align-items: flex-start;
     justify-content: flex-start;
   }
