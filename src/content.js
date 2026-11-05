@@ -71,22 +71,22 @@ const projectList = [
     site: "https://murasakilanguages.com/",
   },
   {
-    id: "ecosys",
+    id: "confidencial",
     platforms: ["web", "mobile"],
     org: "ZTHA",
-    title: "Ecosys",
+    titleKey: "titleConfidential",
     category: "work",
     status: "development",
     featured: true,
     years: [2026, null],
     descKey: "pdesc9",
-    roleKey: "roleEcosys",
+    roleKey: "roleConfidential",
     tech: [
       "Java", "TypeScript", "Spring Boot", "React", "React Native", "Expo", "PostgreSQL",
-      "Redis", "SQLite", "Docker",
+      "MongoDB", "Kafka", "ClickHouse", "Redis", "SQLite", "Docker",
     ],
     stack: [
-      "Flyway", "JWT", "Bucket4j", "MapStruct", "AspectJ", "Testcontainers",
+      "CQRS", "Event Sourcing", "Debezium", "Flyway", "JWT", "Bucket4j", "MapStruct", "AspectJ", "Testcontainers",
       "Styled Components", "Recharts", "Leaflet", "Vitest", "Playwright", "Jest",
     ],
     private: true,
@@ -430,12 +430,13 @@ export const i18nJson = {
     filterCategory: "Tipo",
     noResults: "Nenhum projeto com essa combinação de filtros.",
     titleLostHeaven: "Jogo sem nome",
+    titleConfidential: "Projeto confidencial",
     roleLostHeaven: "Projeto individual: primeiro jogo da Lost Heaven, publisher independente que estou criando.",
     roleSolo: "Projeto individual, do planejamento à publicação.",
     roleFreelance: "Freelance individual, do desenvolvimento à entrega.",
     roleMurasaki:
       "Projeto individual: front-end em React, API em Spring Boot, extensão do Chrome, infraestrutura e monitoramento.",
-    roleEcosys: "Principal desenvolvedor da API, da aplicação web e do app mobile.",
+    roleConfidential: "Principal desenvolvedor da API, da aplicação web e do app mobile.",
     roleCaderneta: "Desenvolvi a API em Spring Boot e contribuí com o app mobile.",
     roleAcessos: "Desenvolvi a API e o front-end web.",
     roleAuth: "Desenvolvi o app mobile e contribuí com a API.",
@@ -449,7 +450,7 @@ export const i18nJson = {
     pdesc8:
       "Kanban pessoal offline com hábitos, metas, finanças, canvas e importação via IA, com app desktop e app mobile sincronizados.",
     pdesc9:
-      "Plataforma de gestão de cooperativas agrícolas: web administrativa, API e app mobile para produtores venderem seus produtos.",
+      "Projeto sob sigilo. A API usa CQRS com event sourcing: o Postgres guarda os eventos, o Debezium os publica no Kafka e um worker monta as telas de leitura no MongoDB, enquanto um job noturno carrega o ClickHouse para as análises. Web administrativa e app mobile que funciona offline.",
     pdesc10:
       "Fintech de cooperativa de crédito digital com contas, empréstimos, investimentos e cartões, em monólito modular com Clean Architecture.",
     pdesc11:
@@ -534,12 +535,13 @@ export const i18nJson = {
     filterCategory: "Type",
     noResults: "No projects match this combination of filters.",
     titleLostHeaven: "Untitled game",
+    titleConfidential: "Confidential project",
     roleLostHeaven: "Solo project: the first game from Lost Heaven, the indie publisher I'm starting.",
     roleSolo: "Solo project, from planning to release.",
     roleFreelance: "Solo freelance work, from development to delivery.",
     roleMurasaki:
       "Solo project: React front end, Spring Boot API, Chrome extension, infrastructure and monitoring.",
-    roleEcosys: "Lead developer of the API, the web app and the mobile app.",
+    roleConfidential: "Lead developer of the API, the web app and the mobile app.",
     roleCaderneta: "Built the Spring Boot API and contributed to the mobile app.",
     roleAcessos: "Built the API and the web front end.",
     roleAuth: "Built the mobile app and contributed to the API.",
@@ -553,7 +555,7 @@ export const i18nJson = {
     pdesc8:
       "Offline personal kanban with habits, goals, finances, canvas and AI-assisted import, with synced desktop and mobile apps.",
     pdesc9:
-      "Agricultural cooperative management platform: admin web app, API and mobile app for farmers to sell their products.",
+      "Under NDA. The API uses CQRS with event sourcing: Postgres stores the events, Debezium publishes them to Kafka and a worker builds the read views in MongoDB, while a nightly job loads ClickHouse for analytics. Admin web app and an offline-capable mobile app.",
     pdesc10:
       "Digital credit union fintech with accounts, loans, investments and cards, built as a modular monolith with Clean Architecture.",
     pdesc11:
@@ -638,12 +640,13 @@ export const i18nJson = {
     filterCategory: "種類",
     noResults: "この条件に当てはまるプロジェクトはありません。",
     titleLostHeaven: "タイトル未定のゲーム",
+    titleConfidential: "非公開プロジェクト",
     roleLostHeaven: "個人プロジェクト：立ち上げ中のインディーパブリッシャー「Lost Heaven」の第1作。",
     roleSolo: "個人プロジェクト。企画から公開まで担当。",
     roleFreelance: "個人でのフリーランス案件。開発から納品まで担当。",
     roleMurasaki:
       "個人プロジェクト：ReactのフロントエンドとSpring BootのAPI、Chrome拡張機能、インフラ、監視まで担当。",
-    roleEcosys: "API、Webアプリ、モバイルアプリの主担当開発者。",
+    roleConfidential: "API、Webアプリ、モバイルアプリの主担当開発者。",
     roleCaderneta: "Spring BootのAPIを開発し、モバイルアプリにも参加。",
     roleAcessos: "APIとWebフロントエンドを開発。",
     roleAuth: "モバイルアプリを開発し、APIにも参加。",
@@ -657,7 +660,7 @@ export const i18nJson = {
     pdesc8:
       "習慣、目標、家計、キャンバス、AIによるインポート機能を備えたオフライン個人用かんばん。デスクトップ版とモバイル版を同期。",
     pdesc9:
-      "農業協同組合の管理プラットフォーム：管理用Webアプリ、API、生産者が商品を販売するためのモバイルアプリ。",
+      "守秘義務のあるプロジェクト。APIはCQRSとイベントソーシングを採用：イベントをPostgresに保存し、DebeziumでKafkaへ配信、ワーカーがMongoDBに読み取り用ビューを構築。夜間ジョブでClickHouseに分析用データを投入。管理用Webアプリとオフライン対応のモバイルアプリ。",
     pdesc10:
       "口座・ローン・投資・カードを提供するデジタル信用組合向けフィンテック。クリーンアーキテクチャによるモジュラーモノリス。",
     pdesc11:
