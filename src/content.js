@@ -132,7 +132,7 @@ const projectList = [
     org: "ZTHA",
     title: "Caderneta Digital",
     category: "work",
-    status: "development",
+    status: "archived",
     years: [2025, 2026],
     descKey: "pdesc10",
     roleKey: "roleCaderneta",
@@ -253,7 +253,7 @@ const projectList = [
     id: "tsunagi",
     title: "Tsunagi",
     category: "study",
-    status: "paused",
+    status: "archived",
     years: [2025, 2026],
     descKey: "pdesc13",
     roleKey: "roleSolo",
@@ -265,8 +265,8 @@ const projectList = [
     id: "computer8bit",
     title: "Computer 8-bit",
     category: "study",
-    status: "development",
-    years: [2026, null],
+    status: "archived",
+    years: [2024, 2024],
     descKey: "pdesc19",
     roleKey: "roleSolo",
     tech: ["Logisim"],
@@ -410,7 +410,6 @@ export const i18nJson = {
     imagesSoon: "Prints em breve",
     statusLive: "No ar",
     statusDevelopment: "Em desenvolvimento",
-    statusPaused: "Pausado",
     statusArchived: "Arquivado",
     statusStudy: "Estudo",
     catWork: "Profissional",
@@ -468,7 +467,7 @@ export const i18nJson = {
     pdesc18:
       "Autenticação centralizada do ecossistema ZTHA: app mobile com 2FA (TOTP), biometria e leitura de QR Code, e API com JWT e verificação de e-mail.",
     pdesc19:
-      "Computador de 8 bits que estou montando do zero no Logisim, a partir de portas lógicas: ALU com soma e subtração, registradores, RAM e CPU.",
+      "Computador de 8 bits que montei do zero no Logisim, a partir de portas lógicas: ALU com soma e subtração, registradores, RAM e CPU.",
   },
   en: {
     teamOf: "{n} people",
@@ -515,7 +514,6 @@ export const i18nJson = {
     imagesSoon: "Screenshots coming soon",
     statusLive: "Live",
     statusDevelopment: "In development",
-    statusPaused: "Paused",
     statusArchived: "Archived",
     statusStudy: "Study",
     catWork: "Professional",
@@ -573,7 +571,7 @@ export const i18nJson = {
     pdesc18:
       "Centralized authentication for the ZTHA ecosystem: mobile app with 2FA (TOTP), biometrics and QR Code scanning, plus an API with JWT and email verification.",
     pdesc19:
-      "An 8-bit computer I'm building from scratch in Logisim, starting from logic gates: an ALU with add and subtract, registers, RAM and a CPU.",
+      "An 8-bit computer I built from scratch in Logisim, starting from logic gates: an ALU with add and subtract, registers, RAM and a CPU.",
   },
   jp: {
     teamOf: "{n}人",
@@ -620,7 +618,6 @@ export const i18nJson = {
     imagesSoon: "スクリーンショット準備中",
     statusLive: "公開中",
     statusDevelopment: "開発中",
-    statusPaused: "一時停止",
     statusArchived: "アーカイブ済み",
     statusStudy: "学習",
     catWork: "業務",
@@ -678,6 +675,6 @@ export const i18nJson = {
     pdesc18:
       "ZTHAエコシステムの統合認証：2FA（TOTP）、生体認証、QRコード読み取りを備えたモバイルアプリと、JWT・メール認証対応のAPI。",
     pdesc19:
-      "Logisimで論理ゲートからゼロで組み立てている8ビットコンピュータ：加減算ALU、レジスタ、RAM、CPU。",
+      "Logisimで論理ゲートからゼロから組み立てた8ビットコンピュータ：加減算ALU、レジスタ、RAM、CPU。",
   },
 };

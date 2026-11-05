@@ -80,7 +80,7 @@ Estados aparecem como texto ou pequeno marcador sólido, sobre fundo neutro. Nun
 | No ar | `#37704F` |
 | Em desenvolvimento | `#875C0C` |
 | Estudo | `#3F6F9F` |
-| Pausado / arquivado | `--ink-3` |
+| Arquivado | `--ink-3` |
 
 Contraste mínimo: 4.5:1 para texto comum e 3:1 para texto grande e marcadores.
 
