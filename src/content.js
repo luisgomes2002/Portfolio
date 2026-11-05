@@ -128,7 +128,7 @@ const projectList = [
   },
   {
     id: "caderneta",
-    platforms: ["mobile"],
+    platforms: ["web", "mobile"],
     org: "ZTHA",
     title: "Caderneta Digital",
     category: "work",
