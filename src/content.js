@@ -105,7 +105,7 @@ const projectList = [
       "TypeScript", "Electron", "React", "React Native", "Expo", "SQLite",
       "Cloudflare Workers", "Tailwind CSS",
     ],
-    stack: ["Zustand", "dnd kit", "D3", "xterm.js", "Claude API", "Vitest", "Jest"],
+    stack: ["Zustand", "dnd kit", "D3", "xterm.js", "MCP", "Vitest", "Jest"],
     repo: "https://github.com/luisgomes2002/Sagyou",
   },
   {
