@@ -448,7 +448,7 @@ export const i18nJson = {
     pdesc7:
       "Sistema desktop de gestão hoteleira com módulos de reservas, quartos, hóspedes, relatórios e auditoria.",
     pdesc8:
-      "Kanban pessoal offline com hábitos, metas, finanças, canvas e importação via IA, com app desktop e app mobile sincronizados.",
+      "Espaço pessoal com tarefas, hábitos, metas e finanças, com app desktop e mobile sincronizados. Roda agentes de código (Claude Code, Codex) em worktrees isoladas, com acesso aos dados via MCP e memória persistente entre sessões.",
     pdesc9:
       "Projeto sob sigilo. A API usa CQRS com event sourcing: o Postgres guarda os eventos, o Debezium os publica no Kafka e um worker monta as telas de leitura no MongoDB, enquanto um job noturno carrega o ClickHouse para as análises. Web administrativa e app mobile que funciona offline.",
     pdesc10:
@@ -553,7 +553,7 @@ export const i18nJson = {
     pdesc7:
       "Desktop hotel management system with modules for reservations, rooms, guests, reports and audit.",
     pdesc8:
-      "Offline personal kanban with habits, goals, finances, canvas and AI-assisted import, with synced desktop and mobile apps.",
+      "Personal workspace for tasks, habits, goals and finances, with synced desktop and mobile apps. Runs coding agents (Claude Code, Codex) in isolated worktrees, with data access via MCP and persistent memory across sessions.",
     pdesc9:
       "Under NDA. The API uses CQRS with event sourcing: Postgres stores the events, Debezium publishes them to Kafka and a worker builds the read views in MongoDB, while a nightly job loads ClickHouse for analytics. Admin web app and an offline-capable mobile app.",
     pdesc10:
@@ -658,7 +658,7 @@ export const i18nJson = {
     pdesc7:
       "予約・客室・宿泊客・レポート・監査モジュールを備えたデスクトップホテル管理システム。",
     pdesc8:
-      "習慣、目標、家計、キャンバス、AIによるインポート機能を備えたオフライン個人用かんばん。デスクトップ版とモバイル版を同期。",
+      "タスク・習慣・目標・家計を管理する個人用ワークスペース。デスクトップ版とモバイル版を同期。コーディングエージェント（Claude Code、Codex）を独立したworktreeで実行し、MCP経由のデータアクセスとセッションをまたぐ永続メモリを備える。",
     pdesc9:
       "守秘義務のあるプロジェクト。APIはCQRSとイベントソーシングを採用：イベントをPostgresに保存し、DebeziumでKafkaへ配信、ワーカーがMongoDBに読み取り用ビューを構築。夜間ジョブでClickHouseに分析用データを投入。管理用Webアプリとオフライン対応のモバイルアプリ。",
     pdesc10:
